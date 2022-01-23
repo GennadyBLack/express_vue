@@ -3,7 +3,7 @@ module.exports = function(app) {
     const user = require('../controller/user.controller.js');
  
     // Create a new Task
-    app.post('/api/user', user.create);
+    // app.post('/api/user', user.create);
  
     // Retrieve all Tasks
     app.get('/api/users', user.findAll);

@@ -23,7 +23,7 @@
 
 <script>
 import http from "../http-common";
-
+import {getAllUsers} from '../api/user'
 export default {
   name: "customers-list",
   data() {
@@ -33,7 +33,14 @@ export default {
   },
   methods: {
     /* eslint-disable no-console */
-    retrieveCustomers() {
+     retrieveCustomers() {
+      const user =  getAllUsers().then((response) => {
+           // JSON are parsed automatically.
+           
+          console.log(response.data);
+          return response.data
+        })
+      console.log(user,'users')
       http
         .get("/tasks")
         .then((response) => {

@@ -22,7 +22,7 @@ db.sequelize = sequelize;
  
 //Models/tables
 db.tasks = require('../model/task.model.js')(sequelize, Sequelize);
-db.user = require("../models/user.model.js")(sequelize, Sequelize);
+db.user = require("../model/user.model.js")(sequelize, Sequelize);
 // db.role = require("../models/role.model.js")(sequelize, Sequelize);
  
 // db.role.belongsToMany(db.user, {

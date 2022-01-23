@@ -1,10 +1,9 @@
-import bcrypt from 'bcrypt'
+const bcrypt = require('bcrypt')
 const rounds = 10
-import jwt from 'jsonwebtoken'
+const jwt =require('jsonwebtoken')
 const tokenSecret = "my-token-secret"
 const db = require('../config/db.config.js')
 const User = db.user
-
 
 // login
 exports.login = async(req, res) => {
