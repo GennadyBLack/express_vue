@@ -7,27 +7,31 @@ import Customer from "../components/Customer.vue";
 const routes = [
   {
     path: "/",
-    name: "customers",
+    name: "tasks",
     alias: "/customer",
     component: CustomersList,
+    meta:{layout:'DefaultLayout'},
     children: [
       {
         path: "/customer/:id",
         name: "customer-details",
         component: Customer,
-        props: true
+        props:true,
+        meta:{layout:'DefaultLayout'},
       }
     ]
   },
   {
     path: "/add",
     name: "add",
-    component: AddCustomer
+    component: AddCustomer,
+    meta:{layout:'DefaultLayout'},
   },
   {
     path: "/search",
     name: "search",
-    component: SearchCustomers
+    component: SearchCustomers,
+    meta:{layout:'DefaultLayout'},
   }
 ]
 

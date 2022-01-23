@@ -1,66 +1,81 @@
 <template>
-  <div v-if="this.customer">
+  <div v-if="customer">
     <h4>Customer</h4>
-    <div>
-      <label>Name: </label> {{this.customer.name}}
-    </div>
-    <div>
-      <label>Age: </label> {{this.customer.age}}
-    </div>
-    <div>
-      <label>Active: </label> {{this.customer.active}}
-    </div>
-  
-    <span v-if="this.customer.active" v-on:click="updateActive(false)" class="button is-small btn-primary">Inactive</span>
-    <span v-else v-on:click="updateActive(true)" class="button is-small btn-primary">Active</span>
-  
-    <span class="button is-small btn-danger" v-on:click="deleteCustomer()">Delete</span>
+    {{ customer.title }}
+    <div><label>Name: </label> {{ customers.title }}</div>
+    <div><label>description: </label> {{ customers.description }}</div>
+    <div><label>Active: </label> {{ customers.active }}</div>
+
+    <span
+      v-if="this.customer.active"
+      v-on:click="updateActive(false)"
+      class="button is-small btn-primary"
+      >Inactive</span
+    >
+    <span
+      v-else
+      v-on:click="updateActive(true)"
+      class="button is-small btn-primary"
+      >Active</span
+    >
+
+    <span class="button is-small btn-danger" v-on:click="deleteCustomer()"
+      >Delete</span
+    >
   </div>
   <div v-else>
-    <br>
+    <br />
     <p>Please click on a Customer...</p>
   </div>
 </template>
 
 <script>
 import http from "../http-common";
-
 export default {
+  computed: {
+    customers() {
+      return JSON.parse(this.customer);
+    },
+  },
   name: "customer",
-  props: ["customer"],
+  props: {
+    customer: {
+      type: String,
+    },
+  },
   methods: {
     /* eslint-disable no-console */
     updateActive(status) {
       var data = {
         id: this.customer.id,
-        name: this.customer.name,
-        age: this.customer.active,
-        active: status
+        title: this.customer.title,
+        description: this.customer.active,
+        active: status,
       };
 
       http
         .put("/task/" + this.customer.id, data)
-        .then(response => {
-            console.log(response)
-         // this.customer.active = response.data.active;
+        .then((response) => {
+          console.log(response);
+          // this.customer.active = response.data.active;
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
     deleteCustomer() {
       http
         .delete("/customer/" + this.customer.id)
-        .then(response => {
+        .then((response) => {
           console.log(response.data);
           this.$emit("refreshData");
-          this.$router.push('/');
+          this.$router.push("/");
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
-    }
+    },
     /* eslint-enable no-console */
-  }
+  },
 };
 </script>

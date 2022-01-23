@@ -1,36 +1,31 @@
 <template>
-    <div id="app" class="container-fluid">
-        <div class="site-info">
-            <h1>ozenero</h1>
-            <h3>Vue Nodejs example</h3>
-        </div>
-        <nav>
-            <router-link class="btn btn-primary" to="/">Customers</router-link>
-            <router-link class="btn btn-primary" to="/add">Add</router-link>
-            <router-link class="btn btn-primary" to="/search">Search</router-link>
-        </nav>
-        <br>
-        <router-view>
-    </router-view></div>
+<div class='app_container'>
+ <component :is="layout" />
+ <Errors/>
+</div>
 </template>
 
 <script>
+import Errors from './components/transitions/Errors'
+import DefaultLayout from './layouts/DefaultLayout.vue'
 export default {
-  name: "app"
-};
+    name: 'app',
+    components: {
+        // MainMenu,
+        // SidebarMenu,
+        DefaultLayout,
+        // CreateLayout,
+        // ModalCreateLayout,
+        // AuthLayout,
+        Errors
+    },
+    mounted() {
+        // this.$router.push("/profile");
+    },
+    computed: {
+        layout() {
+            return this.$route.meta.layout
+        }
+    }
+}
 </script>
-
-<style>
-.site-info {
-  color: blue;
-  margin-bottom: 20px;
-}
-
-.btn-primary {
-  margin-right: 5px;
-}
-
-.container-fluid {
-  text-align: center;
-}
-</style>

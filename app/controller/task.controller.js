@@ -2,11 +2,14 @@ const db = require('../config/db.config.js');
 const Task = db.tasks;
  
 // Post a Task
-exports.create = (req, res) => {	
+exports.create = (req, res) => {
+	console.log(req.body)	
+	const {title,description,active} = req.body
 	// Save to PostgreSQL database
 	Task.create({  
-		name: req.body.name,
-		age: req.body.age
+		title: title,
+		description: description,
+		active:active
 	}).then(Task => {		
 		// Send created Task to client
 		res.send(Task);

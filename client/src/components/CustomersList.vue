@@ -1,22 +1,24 @@
 <template>
-    <div class="list row">
-        <div class="col-md-6">
-            <h4>Customers List</h4>
-            <ul>
-                <li v-for="(customer, index) in customers" :key="index">
-                    <router-link :to="{
-                            name: 'customer-details',
-                            params: { customer: customer, id: customer.id }
-                        }">
-                            {{customer.name}}
-                    </router-link>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <router-view @refreshdata="refreshList"></router-view>
-        </div>
+  <div class="list row">
+    <div class="col-md-6">
+      <h4>Customers List</h4>
+      <ul>
+        <li v-for="(customer, index) in customers" :key="index">
+          <router-link
+            :to="{
+              name: 'customer-details',
+              params: { customer: JSON.stringify(customer), id: customer.id },
+            }"
+          >
+            {{ customer.title }}
+          </router-link>
+        </li>
+      </ul>
     </div>
+    <div class="col-md-6">
+      <router-view @refreshdata="refreshList"></router-view>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -26,30 +28,30 @@ export default {
   name: "customers-list",
   data() {
     return {
-      customers: []
+      customers: [],
     };
   },
   methods: {
     /* eslint-disable no-console */
     retrieveCustomers() {
       http
-        .get("/customers")
-        .then(response => {
+        .get("/tasks")
+        .then((response) => {
           this.customers = response.data; // JSON are parsed automatically.
           console.log(response.data);
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
     refreshList() {
       this.retrieveCustomers();
-    }
+    },
     /* eslint-enable no-console */
   },
   mounted() {
     this.retrieveCustomers();
-  }
+  },
 };
 </script>
 
