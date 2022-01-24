@@ -3,7 +3,6 @@ const Task = db.tasks;
  
 // Post a Task
 exports.create = (req, res) => {
-	console.log(req.body)	
 	const {title,description,active} = req.body
 	// Save to PostgreSQL database
 	Task.create({  
@@ -20,6 +19,7 @@ exports.create = (req, res) => {
  
 // FETCH all tasks
 exports.findAll = (req, res) => {
+	console.log(req,'req')
 	Task.findAll().then(tasks => {
 		// Send all tasks to Client
 		res.send(tasks);

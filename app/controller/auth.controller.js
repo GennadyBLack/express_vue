@@ -7,7 +7,6 @@ const User = db.user
 
 // login
 exports.login = async(req, res) => {
-
 const {email,password} = req.body.user
 await User.findOne({ where: { email: email } })
 .then(user => {
@@ -49,3 +48,8 @@ exports.register = async (req, res) => {
 function generateToken(user){
     return jwt.sign({data: user}, tokenSecret, {expiresIn: '24h'})
 }
+
+exports.me = async (req, res) => {
+    res.status(200).json({user:req.user})
+    };
+     

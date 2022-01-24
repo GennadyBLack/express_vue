@@ -3,6 +3,8 @@ import CustomersList from "../components/CustomersList.vue";
 import AddCustomer from "../components/AddCustomer.vue";
 import SearchCustomers from "../components/SearchCustomers.vue";
 import Customer from "../components/Customer.vue";
+import Login from '../views/auth/LoginForm'
+import Register from '../views/auth/RegisterForm'
 
 const routes = [
   {
@@ -31,6 +33,18 @@ const routes = [
     path: "/search",
     name: "search",
     component: SearchCustomers,
+    meta:{layout:'DefaultLayout'},
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+    meta:{layout:'DefaultLayout'},
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
     meta:{layout:'DefaultLayout'},
   }
 ]

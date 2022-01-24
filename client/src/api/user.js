@@ -1,4 +1,3 @@
-import res from 'express/lib/response'
 import api from './index'
 
 export const getAllUsers = () =>{
