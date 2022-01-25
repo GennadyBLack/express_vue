@@ -48,7 +48,7 @@ exports.register = async (req, res) => {
 function generateToken(user){
     return jwt.sign({data: user}, tokenSecret, {expiresIn: '24h'})
 }
-
+//me
 exports.me = async (req, res) => {
     res.status(200).json({user:req.user})
     };

@@ -1,13 +1,17 @@
 import axios from 'axios';
+import {getToken} from '../helpers/Utils/localStorageHelper'
 import {setError} from '../composables/ErrorsComposable/index'
  // Default config for the axios instance
 const axiosParams = {
 // Set different base URL based on the environment
-baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : '/', // Alternative if you have more environments
+baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8081/api' : '/', // Alternative if you have more environments
 // baseURL: process.env.VUE_APP_API_BASE_URL
 };
  // Create axios instance with default params
 const axiosInstance = axios.create(axiosParams);
+const token = getToken()
+if(token){axiosInstance.defaults.headers.common['Authorization'] = `Token ${token}`}
+
  // Main api function
  axiosInstance.interceptors.response.use((res)=>{
      return res

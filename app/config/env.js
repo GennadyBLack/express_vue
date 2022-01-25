@@ -3,7 +3,7 @@
 const env = {
     database: 'postgres',
     username: 'postgres',
-    password: 'test',
+    password: 'postgres',
     host: 'localhost',
     dialect: 'postgres',
     pool: {
