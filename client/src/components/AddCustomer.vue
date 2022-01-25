@@ -46,48 +46,47 @@
 </template>
 
 <script>
-import http from "../http-common";
+import { createTask } from '../api/task'
 export default {
-  name: "add-customer",
+  name: 'add-customer',
   data() {
     return {
       customer: {
         id: 0,
-        title: "",
-        description: "",
+        title: '',
+        description: '',
         active: true,
       },
       submitted: false,
-    };
+    }
   },
   methods: {
-     /* eslint-disable no-console */ 
-    saveCustomer () {
+    /* eslint-disable no-console */
+    saveCustomer() {
       var data = {
         title: this.customer.title,
         description: this.customer.description,
         active: this.customer.active,
-      };
+      }
 
-      http
-        .post("/task", data)
+      createTask(data)
         .then((response) => {
-          this.customer.id = response.data.id;
-          console.log(response.data);
+          this.customer.id = response.data.id
+          console.log(response.data)
         })
         .catch((e) => {
-          console.log(e);
-        });
+          console.log(e)
+        })
 
-      this.submitted = true;
+      this.submitted = true
     },
     newCustomer() {
-      this.submitted = false;
-      this.customer = {};
+      this.submitted = false
+      this.customer = {}
     },
     /* eslint-enable no-console */
   },
-};
+}
 </script>
 
 <style>

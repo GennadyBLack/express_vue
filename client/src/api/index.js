@@ -4,7 +4,7 @@ import {setError} from '../composables/ErrorsComposable/index'
  // Default config for the axios instance
 const axiosParams = {
 // Set different base URL based on the environment
-baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8081/api' : '/', // Alternative if you have more environments
+baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : '/', // Alternative if you have more environments
 // baseURL: process.env.VUE_APP_API_BASE_URL
 };
  // Create axios instance with default params

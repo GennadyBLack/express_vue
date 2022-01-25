@@ -12,6 +12,6 @@ const appRoot = createApp(App)
 
 // registerBaseComponents(appRoot)
 
-appRoot.config.globalProperties.debug = msg => console.log(`Debug: ${msg}`)
+appRoot.config.globalProperties.debug = (msg) => console.log(`Debug: ${msg}`)
 
 appRoot.use(router).mount('#app')

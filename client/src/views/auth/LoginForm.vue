@@ -6,6 +6,7 @@
     <button @click="me">me</button>
   </div>
 </template>
+
 <script>
 import Axios from 'axios'
 import { saveToken } from '../../helpers/Utils/localStorageHelper'
