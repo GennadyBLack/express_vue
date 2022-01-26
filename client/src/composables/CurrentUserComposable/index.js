@@ -5,7 +5,7 @@ export const current_user = ref(null)
 
 export const fetchCurrentUser = () => {
   try {
-    me().then((res) => (current_user.value = res.data))
+    me().then((res) => (current_user.value = res.data.user))
   } catch (error) {
     console.log(error, 'from curent')
   }
