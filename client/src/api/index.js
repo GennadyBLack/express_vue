@@ -18,6 +18,10 @@ if (token) {
 // Main api function
 axiosInstance.interceptors.response.use(
   (res) => {
+    const token = getToken()
+    if (token) {
+      axiosInstance.defaults.headers.common['Authorization'] = `Token ${token}`
+    }
     return res
   },
   (error) => {

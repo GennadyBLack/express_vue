@@ -4,6 +4,7 @@ import AddCustomer from '../components/AddCustomer.vue'
 import Customer from '../components/Customer.vue'
 import Login from '../views/auth/LoginForm'
 import Register from '../views/auth/RegisterForm'
+import Board from '../views/board/Board'
 
 const routes = [
   {
@@ -39,6 +40,12 @@ const routes = [
     path: '/register',
     name: 'register',
     component: Register,
+    meta: { layout: 'DefaultLayout' },
+  },
+  {
+    path: '/board',
+    name: 'board',
+    component: Board,
     meta: { layout: 'DefaultLayout' },
   },
 ]
