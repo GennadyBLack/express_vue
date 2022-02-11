@@ -1,25 +1,38 @@
 <template>
-<div>
-<input type="text" v-model='email'>
-<input type="text" v-model='password'>
-<button @click='login'>login</button>
-</div>
+  <div>
+    <input type="text" v-model="email" />
+    <input type="text" v-model="password" />
+    <button @click="login">login</button>
+    <button @click="me">me</button>
+  </div>
 </template>
+
 <script>
-import {login} from '../../api/auth'
+import Axios from 'axios'
+import { saveToken } from '../../helpers/Utils/localStorageHelper'
+import { login, me } from '../../api/auth'
 export default {
-    name:'Login',
-    data(){
-        return {
-            email:'adminus@mail.ru',
-            password:'adminus'
-        }
-    },
-    methods:{
-        login(){
-            console.log('login')
-            login({user:{email:this.email,password:this.password}}).then(res=>console.log(res,'res-LOGIN'))
-        }
+  name: 'Login',
+  data() {
+    return {
+      email: 'adminus@mail.ru',
+      password: 'adminus',
     }
+  },
+  methods: {
+    login() {
+      login({ user: { email: this.email, password: this.password } }).then(
+        (res) => {
+          saveToken(res.data.token),
+            (Axios.defaults.headers[
+              'Authorization'
+            ] = `token ${res.data.token}`)
+        }
+      )
+    },
+    me() {
+      me().then((res) => concole.log(res, 'ME'))
+    },
+  },
 }
 </script>

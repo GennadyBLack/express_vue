@@ -30,14 +30,14 @@
 </template>
 
 <script>
-import http from "../http-common";
+import { updateTask, deleteTask } from '../api/task'
 export default {
   computed: {
     customers() {
-      return JSON.parse(this.customer);
+      return JSON.parse(this.customer)
     },
   },
-  name: "customer",
+  name: 'customer',
   props: {
     customer: {
       type: String,
@@ -51,31 +51,29 @@ export default {
         title: this.customer.title,
         description: this.customer.active,
         active: status,
-      };
+      }
 
-      http
-        .put("/task/" + this.customer.id, data)
+      updateTask(this.customer.id, data)
         .then((response) => {
-          console.log(response);
+          console.log(response)
           // this.customer.active = response.data.active;
         })
         .catch((e) => {
-          console.log(e);
-        });
+          console.log(e)
+        })
     },
     deleteCustomer() {
-      http
-        .delete("/customer/" + this.customer.id)
+      deleteTask(id)
         .then((response) => {
-          console.log(response.data);
-          this.$emit("refreshData");
-          this.$router.push("/");
+          console.log(response.data)
+          this.$emit('refreshData')
+          this.$router.push('/')
         })
         .catch((e) => {
-          console.log(e);
-        });
+          console.log(e)
+        })
     },
     /* eslint-enable no-console */
   },
-};
+}
 </script>

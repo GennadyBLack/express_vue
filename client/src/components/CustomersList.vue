@@ -22,44 +22,43 @@
 </template>
 
 <script>
-import http from "../http-common";
-import {getAllUsers} from '../api/user'
+import { getAllTasks } from '../api/task'
+import { getAllUsers } from '../api/user'
 export default {
-  name: "customers-list",
+  name: 'customers-list',
   data() {
     return {
       customers: [],
-    };
+    }
   },
   methods: {
     /* eslint-disable no-console */
-     retrieveCustomers() {
-      const user =  getAllUsers().then((response) => {
-           // JSON are parsed automatically.
-           
-          console.log(response.data);
-          return response.data
-        })
-      console.log(user,'users')
-      http
-        .get("/tasks")
+    retrieveCustomers() {
+      const user = getAllUsers().then((response) => {
+        // JSON are parsed automatically.
+
+        console.log(response.data)
+        return response.data
+      })
+      console.log(user, 'users')
+      getAllTasks()
         .then((response) => {
-          this.customers = response.data; // JSON are parsed automatically.
-          console.log(response.data);
+          this.customers = response.data // JSON are parsed automatically.
+          console.log(response.data)
         })
         .catch((e) => {
-          console.log(e);
-        });
+          console.log(e)
+        })
     },
     refreshList() {
-      this.retrieveCustomers();
+      this.retrieveCustomers()
     },
     /* eslint-enable no-console */
   },
   mounted() {
-    this.retrieveCustomers();
+    this.retrieveCustomers()
   },
-};
+}
 </script>
 
 <style>
