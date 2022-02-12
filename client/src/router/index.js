@@ -47,6 +47,7 @@ const routes = [
     name: 'board',
     component: Board,
     meta: { layout: 'DefaultLayout' },
+    props: true,
   },
 ]
 

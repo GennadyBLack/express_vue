@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <button @click="createUserBoard">creqte</button>
+  <button @click="createColunm">column</button>
+  {{ board }}
+  <div class="drop-zone__wrapper" v-if="id">
     <div
       class="drop-zone"
       @drop="onDrop($event, 1)"
@@ -34,6 +37,10 @@
     </div>
   </div>
 </template>
+<script setup>
+import useBoard from '@/composables/boardComposables/currentBoardComp'
+const { board, id, createUserBoard, createColunm } = useBoard()
+</script>
 <script>
 export default {
   methods: {
@@ -87,7 +94,14 @@ export default {
 }
 </script>
 <style scoped>
+.drop-zone__wrapper {
+  height: 90vh;
+  display: flex;
+  flex-wrap: nowrap;
+}
 .drop-zone {
+  margin: 0.2rem;
+  min-width: 300px;
   background-color: #eee;
   margin-bottom: 10px;
   padding: 10px;

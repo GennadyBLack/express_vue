@@ -31,6 +31,19 @@ axiosInstance.interceptors.response.use(
     console.log(error.response.status, '-ERROR BAABY')
   }
 )
+
+axiosInstance.interceptors.request.use(
+  (res) => {
+    const token = getToken()
+    if (token) {
+      axiosInstance.defaults.headers.common['Authorization'] = `Token ${token}`
+    }
+    return res
+  },
+  (error) => {
+    console.log(error.response.status, '-ERROR BAABY')
+  }
+)
 const api = (axios) => {
   // Wrapper functions around axios
   return {

@@ -7,3 +7,11 @@ export const getAllUsers = () => {
 export const deleteUserById = (id) => {
   return api.delete('/user', { id })
 }
+
+export const test = () => {
+  return api.get('/users/test', {})
+}
+
+export const createBoard = (id, data) => {
+  return api.post(`/users/${id}/boards`, data)
+}
