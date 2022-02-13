@@ -3,6 +3,7 @@ import { useRoute } from 'vue-router'
 import { getBoardById } from '@/api/board'
 import { createBoard } from '@/api/user'
 import { createColumn } from '@/api/column'
+import { createTask as addTask } from '@/api/task'
 
 export default () => {
   const route = useRoute()
@@ -31,6 +32,11 @@ export default () => {
     const data = { order: 1, title: 'column', description: 'fdf' }
     await createColumn(id?.value, data)
   }
+
+  const createTask = async (id) => {
+    const data = { title: 'task', description: 'description', order: 1 }
+    await addTask(id, data)
+  }
   watch(
     [id],
     (value) => {
@@ -39,5 +45,5 @@ export default () => {
     { deep: true }
   )
 
-  return { board, fetchBoard, id, createUserBoard, createColunm }
+  return { board, fetchBoard, id, createUserBoard, createColunm, createTask }
 }

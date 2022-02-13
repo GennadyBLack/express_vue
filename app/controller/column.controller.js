@@ -2,6 +2,23 @@ const db = require("../config/db.config.js");
 const Column = db.column;
 const Board = db.board;
 
+exports.createTask = (req, res) => {
+  try {
+    Column.findOne({ where: { id: req.params.columnId } })
+      .then((Column) => {
+        Column.createTask({
+          ...req.body,
+        });
+        res.send(Column);
+      })
+      .catch((err) => {
+        res.status(500).send("Error -> " + err);
+      });
+  } catch (error) {
+    console.log(error, "ERROR FROM column CONROLLER");
+  }
+};
+
 exports.create = (req, res) => {
   try {
     Board.findOne({ where: { id: req.params.boardId } })

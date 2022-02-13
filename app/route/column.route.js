@@ -7,6 +7,8 @@ module.exports = function (app) {
   //crete
   app.post("/api/columns/:boardId", column.create);
 
+  app.post("/api/columns/:columnId/task", column.createTask);
+
   // // Retrieve a single Board by Id
   // app.get("/api/boards/:boardId", boards.findById);
 
