@@ -1,40 +1,71 @@
 <template>
-  <button @click="createUserBoard">creqte</button>
-  <button @click="createColunm">column</button>
-
-  <div class="drop-zone__wrapper" v-if="board">
-    <!-- start -->
-    <div
-      v-for="column in board?.columns"
-      :key="column?.id"
-      class="drop-zone"
-      @drop="onDrop($event, column?.id)"
-      @dragover.prevent="onDragOver($event)"
-      @dragenter.prevent="onDragEnter($event)"
+  <div v-if="board">
+    <!-- /** ==================== start of draggable COLUMN */ -->
+    <draggable
+      class="drop-zone__wrapper"
+      :list="board?.columns"
+      ghost-class="ghost"
+      group="collumn"
+      @change="log"
+      itemKey="id"
+      @end="end"
+      @start="start"
     >
-      {{ column?.title }}{{ column?.id }}
-      <div
-        v-for="item in column?.tasks"
-        :key="item?.title"
-        class="drag-el"
-        draggable="true"
-        @dragstart="startDrag($event, item)"
-      >
-        {{ item.title }}
-      </div>
+      <template #item="{ element }">
+        <div class="drop-zone">
+          <div class="drop-zone__title">
+            {{ element.title }} {{ element?.id }}
+          </div>
 
-      <button @click="createTask(column?.id)">+</button>
-    </div>
-    <!-- end -->
+          <!-- /** ========================!start of draggable TASK */ -->
+          <draggable
+            :list="element?.tasks"
+            group="task"
+            @change="log"
+            itemKey="id"
+            @end="end"
+            @start="start"
+            ghost-class="ghost"
+          >
+            <template #item="{ element }">
+              <div class="drag-el">{{ element.title }} {{ element?.id }}</div>
+            </template>
+            <template #footer>
+              <button class="btn-default">+ Add task</button>
+            </template>
+          </draggable>
+        </div>
+      </template>
+
+      /**========== column footer */
+    </draggable>
+
+    <!-- TEST -->
+    <button @click="createUserBoard">creqte</button>
+    <button @click="createColunm">column</button>
+  </div>
+  <div v-else>
+    <h1>Sorry, you dont have any boards</h1>
   </div>
 </template>
 <script setup>
+import draggable from 'vuedraggable'
 import useBoard from '@/composables/boardComposables/currentBoardComp'
 const { board, id, createUserBoard, createColunm, createTask } = useBoard()
 </script>
 <script>
 export default {
   methods: {
+    start(e) {
+      e.clone.classList.add('rotated')
+      console.log(e, 'START')
+    },
+    end(e) {
+      console.log(e, 'END')
+    },
+    log(item) {
+      console.log(item, 'args')
+    },
     startDrag(evt, item) {
       console.log(evt, item)
       evt.dataTransfer.dropEffect = 'move'
@@ -56,6 +87,9 @@ export default {
 }
 </script>
 <style scoped>
+.ghost {
+  background: rgb(160, 116, 116);
+}
 .drop-zone__wrapper {
   height: 90vh;
   display: flex;
@@ -63,16 +97,25 @@ export default {
   overflow-x: scroll;
 }
 .drop-zone {
+  border-radius: 5px;
   margin: 0.2rem;
-  min-width: 300px;
+  min-width: 17rem;
   background-color: #eee;
   margin-bottom: 10px;
   padding: 10px;
 }
 
 .drag-el {
+  border-radius: 5px;
   background-color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   padding: 5px;
+}
+.ghost {
+  background: rgba(53, 14, 14, 0.274);
+}
+.rotated {
+  transform: rotate(45deg); /* Equal to rotateZ(45deg) */
+  background-color: pink;
 }
 </style>

@@ -45,5 +45,12 @@ export default () => {
     { deep: true }
   )
 
-  return { board, fetchBoard, id, createUserBoard, createColunm, createTask }
+  return {
+    board: computed(() => board.value),
+    fetchBoard,
+    id,
+    createUserBoard,
+    createColunm,
+    createTask,
+  }
 }

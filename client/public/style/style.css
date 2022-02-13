@@ -382,3 +382,16 @@ template {
   font-weight: bold;
   color: black;
 }
+.btn-default:hover {
+  border: 1px solid rgb(110, 107, 107);
+}
+.btn-default {
+  border-radius: 4px;
+  border: none;
+}
+
+.drop-zone__title {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
