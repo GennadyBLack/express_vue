@@ -15,3 +15,7 @@ export const createTask = (id, data) => {
 export const updateTask = (id, data) => {
   return api.patch('/task/' + id, { data })
 }
+
+export const getTaskById = (id) => {
+  return api.get(`task/${id}`)
+}

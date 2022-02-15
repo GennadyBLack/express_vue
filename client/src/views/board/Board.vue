@@ -31,7 +31,9 @@
               <div class="drag-el">{{ element.title }} {{ element?.id }}</div>
             </template>
             <template #footer>
-              <button class="btn-default">+ Add task</button>
+              <button class="btn-default" @click="createTask(element?.id)">
+                + Add task
+              </button>
             </template>
           </draggable>
         </div>
@@ -39,18 +41,33 @@
 
       /**========== column footer */
     </draggable>
-
+    <div>
+      <button @click="createUserBoard">Доска</button>
+      <button @click="createColunm">Колонка</button>
+    </div>
     <!-- TEST -->
-    <button @click="createUserBoard">creqte</button>
-    <button @click="createColunm">column</button>
   </div>
   <div v-else>
     <h1>Sorry, you dont have any boards</h1>
+    <div>
+      <button @click="createUserBoard">Доска</button>
+      <button @click="createColunm">Колонка</button>
+    </div>
+    <ToggleProvider>
+      <template #activator="{ toggle }">
+        <button @click="toggle">Add</button>
+      </template>
+      <template #content>
+        <createtastForm />
+      </template>
+    </ToggleProvider>
   </div>
 </template>
 <script setup>
+import ToggleProvider from '../../components/common/ToggleProvider.vue'
+import createtastForm from '../../components/board/task/createTaskForm.vue'
 import draggable from 'vuedraggable'
-import useBoard from '@/composables/boardComposables/currentBoardComp'
+import useBoard from '@/composables/boardComposables/useBoardComp'
 const { board, id, createUserBoard, createColunm, createTask } = useBoard()
 </script>
 <script>

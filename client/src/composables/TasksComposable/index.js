@@ -1,29 +1,28 @@
-import {ref,computed} from 'vue'
-import getAllTasks from '../../api/task'
+import { ref, computed } from 'vue'
+import { createTask as addTask } from '@/api/task'
 
-export default ()=>{
-    const tasks = ref(null)
+export default () => {
+  const task = ref(null)
 
-const fetchTasks = async() =>{
+  const createTask = async (id) => {
+    await addTask(id, { title: task.value })
+  }
+
+  const deleteTask = (id) => {
     try {
-        tasks.value = await getAllTasks()
+      deleteTaskById(id)
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
-    
-}
-const deleteTask = (id) => {
-    try {
-        deleteTaskById(id)
-    } catch (error) {
-        console.log(error)
-    }
-   
-}
-return {
-    tasks,fetchTasks,deleteTask
-}
+  }
+  const setTask = (value) => {
+    task.value = value
+  }
 
+  return {
+    task,
+    createTask,
+    deleteTask,
+    setTask,
+  }
 }
-
-  

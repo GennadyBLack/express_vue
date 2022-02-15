@@ -47,7 +47,7 @@ const routes = [
     path: '/board',
     name: 'board',
     component: Board,
-    meta: { layout: 'DefaultLayout', requiresAuth: true },
+    meta: { layout: 'DefaultLayout', requiresAuth: false },
     props: true,
   },
   {

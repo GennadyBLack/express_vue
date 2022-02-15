@@ -1,4 +1,4 @@
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getBoardById } from '@/api/board'
 import { createBoard } from '@/api/user'
@@ -44,6 +44,10 @@ export default () => {
     },
     { deep: true }
   )
+
+  onMounted(() => {
+    fetchBoard()
+  })
 
   return {
     board: computed(() => board.value),
