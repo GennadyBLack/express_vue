@@ -7,7 +7,7 @@
       v-if="showActivator ? false : isShow ? false : true"
     >
     </slot>
-    <slot name="content" v-if="isShow"> </slot>
+    <slot name="content" v-if="isShow" :toggle="toggle"> </slot>
     <slot name="buttons" v-if="isShow" :toggle="toggle"> </slot>
   </div>
 </template>

@@ -31,9 +31,21 @@
               <div class="drag-el">{{ element.title }} {{ element?.id }}</div>
             </template>
             <template #footer>
-              <button class="btn-default" @click="createTask(element?.id)">
-                + Add task
-              </button>
+              <!-- CREATE TASK FORM START -->
+              <ToggleProvider>
+                <template #activator="{ toggle }">
+                  <button @click="toggle" class="create-tack-btn">+</button>
+                </template>
+                <template #content="{ toggle }">
+                  <createTastForm @blur="los(toggle)" :id="element?.id" />
+                </template>
+                <template #btn="{ toggle }">
+                  <button @click="los(toggle)" class="create-tack-btn">
+                    Добавить задачу
+                  </button>
+                </template>
+              </ToggleProvider>
+              <!-- CREATE TASK FORM END -->
             </template>
           </draggable>
         </div>
@@ -53,19 +65,11 @@
       <button @click="createUserBoard">Доска</button>
       <button @click="createColunm">Колонка</button>
     </div>
-    <ToggleProvider>
-      <template #activator="{ toggle }">
-        <button @click="toggle">Add</button>
-      </template>
-      <template #content>
-        <createtastForm />
-      </template>
-    </ToggleProvider>
   </div>
 </template>
 <script setup>
 import ToggleProvider from '../../components/common/ToggleProvider.vue'
-import createtastForm from '../../components/board/task/createTaskForm.vue'
+import createTastForm from '../../components/board/task/createTaskForm.vue'
 import draggable from 'vuedraggable'
 import useBoard from '@/composables/boardComposables/useBoardComp'
 const { board, id, createUserBoard, createColunm, createTask } = useBoard()
@@ -73,6 +77,10 @@ const { board, id, createUserBoard, createColunm, createTask } = useBoard()
 <script>
 export default {
   methods: {
+    los(funk) {
+      funk()
+      console.log('BLUUUR')
+    },
     start(e) {
       e.clone.classList.add('rotated')
       console.log(e, 'START')
