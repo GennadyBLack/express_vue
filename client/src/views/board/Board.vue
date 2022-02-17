@@ -1,5 +1,5 @@
 <template>
-  <div v-if="board">
+  <div v-if="current_user?.boards.length > 0">
     <!-- /** ==================== start of draggable COLUMN */ -->
     <draggable
       class="drop-zone__wrapper"
@@ -68,6 +68,7 @@
   </div>
 </template>
 <script setup>
+import { current_user } from '../../composables/CurrentUserComposable/index'
 import ToggleProvider from '../../components/common/ToggleProvider.vue'
 import createTastForm from '../../components/board/task/createTaskForm.vue'
 import draggable from 'vuedraggable'

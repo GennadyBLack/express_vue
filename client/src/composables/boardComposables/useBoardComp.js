@@ -10,17 +10,15 @@ import { current_user } from '../CurrentUserComposable/index'
 
 export default () => {
   const route = useRoute()
-
   const board = ref(null)
-  const user_id = current_user?.value?.id
   const id = computed(() => route?.params?.id)
-  console.log(user_id, 'user_id')
+
   const fetchBoard = async () => {
     try {
-      if (user_id) {
+      if (current_user.value.id && id) {
         board.value = (await getBoardById(id?.value)).data
       } else {
-        setNotice('need authorize')
+        setNotice('need authorize or create board')
       }
     } catch (error) {
       console.log(error, 'FROM BOARD COMPOSABLE')
@@ -29,7 +27,8 @@ export default () => {
 
   const createUserBoard = () => {
     try {
-      createBoard(user_id, {
+      console.log(current_user.value.id, 'id')
+      createBoard(current_user.value.id, {
         title: 'Boar',
         description: 'desv',
         background: 'red',
