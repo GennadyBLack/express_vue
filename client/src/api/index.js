@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { getToken } from '../helpers/Utils/localStorageHelper'
-import { setError } from '../composables/ErrorsComposable/index'
+import { setNotice } from '../composables/ErrorsComposable/index'
 // Default config for the axios instance
 const axiosParams = {
   // Set different base URL based on the environment
@@ -25,10 +25,11 @@ axiosInstance.interceptors.response.use(
     return res
   },
   (error) => {
-    if (error.response.status === 404) {
-      setError('Такого запроса нет')
+    if (error?.response?.status === 404) {
+      setNotice('Такого запроса нет')
+    } else {
+      console.log('error')
     }
-    console.log(error.response.status, '-ERROR BAABY')
   }
 )
 

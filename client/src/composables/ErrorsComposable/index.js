@@ -1,14 +1,17 @@
 import { ref } from 'vue'
 
-export const errors = ref([])
+export const notices = ref([])
 
-export const setError = (message) => {
-  errors.value.push({
-    error_message: message,
-    index: errors.value.lenght,
+export const setNotice = (massage, type = 'error-message') => {
+  notices.value.push({
+    notice_message: massage,
+    type,
   })
 }
 
-export const deleteError = (index) => {
-  errors.value = errors.value.filter((el) => el.index !== index)
+export const deleteNotice = (ind) => {
+  notices.value = notices.value.filter((el, index) => index !== ind)
+}
+export const deleteAllNotice = () => {
+  notices.value = []
 }

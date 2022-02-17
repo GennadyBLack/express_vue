@@ -360,11 +360,43 @@ template {
   background-color: aqua;
 }
 .errors-container {
+  max-width: 300px;
+  border-radius: 10px;
+  left: 3rem;
+  width: 300xp;
+  bottom: 3rem;
   position: fixed;
   display: inline-block;
-  background-color: rgb(75, 36, 36);
+  background-color: rgb(253, 253, 253);
 }
-
+.error-message {
+  border-radius: 0.3rem;
+  min-width: 250px;
+  margin: 10px;
+  padding: 10px;
+  background: rgb(243, 173, 173);
+}
+.success-message {
+}
+.delete-error-bnt {
+  border-radius: 50%;
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  font-size: 10px;
+  font-weight: bold;
+}
+.delete-all-error-bnt {
+  top: -10px;
+  left: -15px;
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid red;
+  height: 2rem;
+  width: 2rem;
+  font-size: 10px;
+  font-weight: bold;
+}
 .main-menu {
   height: 40px;
   background-color: rgb(223, 226, 216);

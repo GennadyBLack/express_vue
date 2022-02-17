@@ -4,28 +4,41 @@ import { getBoardById } from '@/api/board'
 import { createBoard } from '@/api/user'
 import { createColumn } from '@/api/column'
 import { createTask as addTask } from '@/api/task'
+import { setNotice } from '../ErrorsComposable'
+
+import { current_user } from '../CurrentUserComposable/index'
 
 export default () => {
   const route = useRoute()
 
   const board = ref(null)
-
+  const user_id = current_user?.value?.id
   const id = computed(() => route?.params?.id)
-
+  console.log(user_id, 'user_id')
   const fetchBoard = async () => {
     try {
-      board.value = (await getBoardById(id?.value)).data
+      if (user_id) {
+        board.value = (await getBoardById(id?.value)).data
+      } else {
+        setNotice('need authorize')
+      }
     } catch (error) {
       console.log(error, 'FROM BOARD COMPOSABLE')
     }
   }
 
   const createUserBoard = () => {
-    createBoard(2, {
-      title: 'Boar',
-      description: 'desv',
-      background: 'red',
-    })
+    try {
+      createBoard(user_id, {
+        title: 'Boar',
+        description: 'desv',
+        background: 'red',
+      })
+        .then((res) => (board.value = res.data))
+        .catch((error) => setNotice(`Не получилось созжать доску`))
+    } catch (error) {
+      setNotice('error from board create')
+    }
   }
 
   const createColunm = async () => {

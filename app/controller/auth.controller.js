@@ -17,12 +17,12 @@ exports.login = async (req, res) => {
           if (errors) res.status(500).json(errors);
           else if (match)
             res.status(200).json({ token: generateToken(user), user: user });
-          else res.status(403).json({ errors: "passwords do not match" });
+          else res.status(403).json({ error: "passwords do not match" });
         });
       }
     })
     .catch((error) => {
-      res.status(500).json(error);
+      res.status(500).json({ error: error });
     });
 };
 
@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
 exports.register = async (req, res) => {
   const { username, password, email } = req.body.user;
   bcrypt.hash(password, rounds, (error, hash) => {
-    if (error) res.status(500).json(error);
+    if (error) res.status(500).json({ error: error });
     else {
       const newUser = User.build({
         email: email,
@@ -43,7 +43,7 @@ exports.register = async (req, res) => {
           res.status(200).json({ token: generateToken(user), user: user });
         })
         .catch((errors) => {
-          res.status(500).json(errors);
+          res.status(500).json({ error: error });
         });
     }
   });
@@ -54,10 +54,14 @@ function generateToken(user) {
 }
 //me
 exports.me = async (req, res) => {
-  const user = await User.findOne({
-    where: { id: req.user.id },
-    include: "boards",
-  });
+  try {
+    const user = await User.findOne({
+      where: { id: req.user.id },
+      include: "boards",
+    });
 
-  res.status(200).json({ user: user });
+    res.status(200).json({ user: user });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
 };
