@@ -8,7 +8,7 @@
     >
     </slot>
     <slot name="content" v-if="isShow" :toggle="toggle"> </slot>
-    <slot name="buttons" v-if="isShow" :toggle="toggle"> </slot>
+    <slot name="btn" v-if="isShow" :toggle="toggle"> </slot>
   </div>
 </template>
 

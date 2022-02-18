@@ -16,7 +16,6 @@
           <div class="drop-zone__title">
             {{ element.title }} {{ element?.id }}
           </div>
-
           <!-- /** ========================!start of draggable TASK */ -->
           <draggable
             :list="element?.tasks"
@@ -34,14 +33,16 @@
               <!-- CREATE TASK FORM START -->
               <ToggleProvider>
                 <template #activator="{ toggle }">
-                  <button @click="toggle" class="create-tack-btn">+</button>
+                  <button @click="toggle" class="create-tack-btn">
+                    Добавить задачу
+                  </button>
                 </template>
                 <template #content="{ toggle }">
                   <createTastForm @blur="los(toggle)" :id="element?.id" />
                 </template>
                 <template #btn="{ toggle }">
                   <button @click="los(toggle)" class="create-tack-btn">
-                    Добавить задачу
+                    Сохранить
                   </button>
                 </template>
               </ToggleProvider>
@@ -129,6 +130,7 @@ export default {
   background-color: #eee;
   margin-bottom: 10px;
   padding: 10px;
+  overflow-x: scroll;
 }
 
 .drag-el {

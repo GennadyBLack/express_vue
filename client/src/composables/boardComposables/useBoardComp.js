@@ -15,7 +15,7 @@ export default () => {
 
   const fetchBoard = async () => {
     try {
-      if (current_user.value.id && id) {
+      if (current_user.value.id && id?.value) {
         board.value = (await getBoardById(id?.value)).data
       } else {
         setNotice('need authorize or create board')
@@ -24,11 +24,12 @@ export default () => {
       console.log(error, 'FROM BOARD COMPOSABLE')
     }
   }
-
-  const createUserBoard = () => {
+  /**
+   * Border methods
+   */
+  const createUserBoard = async () => {
     try {
-      console.log(current_user.value.id, 'id')
-      createBoard(current_user.value.id, {
+      await createBoard(current_user.value.id, {
         title: 'Boar',
         description: 'desv',
         background: 'red',
@@ -39,15 +40,33 @@ export default () => {
       setNotice('error from board create')
     }
   }
-
+  /**
+   * Column methods
+   */
   const createColunm = async () => {
-    const data = { order: 1, title: 'column', description: 'fdf' }
-    await createColumn(id?.value, data)
+    try {
+      const data = { order: 1, title: 'column', description: 'fdf' }
+      await createColumn(id?.value, data)
+      //перезаписываю данные доски
+      fetchBoard()
+    } catch (error) {
+      setNotice('error from Column create')
+    }
   }
-
+  /**
+   * Task methods
+   */
   const createTask = async (id) => {
-    const data = { title: 'task', description: 'description', order: 1 }
-    await addTask(id, data)
+    try {
+      const data = { title: 'task', description: 'description', order: 1 }
+      console.log('ALOOOOOo')
+      await addTask(id, data).then((res) => {
+        console.log(res), fetchBoard()
+      })
+      //перезаписываю данные доски
+    } catch (error) {
+      setNotice('error from Task create')
+    }
   }
   watch(
     [id],

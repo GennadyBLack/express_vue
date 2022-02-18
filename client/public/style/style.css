@@ -386,12 +386,17 @@ template {
   background: rgb(186, 233, 171);
 }
 .delete-error-bnt {
+  box-shadow: 1px 3px 6px 3px rgb(156, 156, 156);
+  position: absolute;
+  top: 4px;
+  right: 4px;
   border-radius: 50%;
   border: none;
-  height: 2rem;
-  width: 2rem;
+  height: 1.5rem;
+  width: 1.5rem;
   font-size: 10px;
   font-weight: bold;
+  background: rgb(224, 118, 118);
 }
 .delete-all-error-bnt {
   top: -10px;
@@ -437,6 +442,9 @@ template {
 
 .create-tack-btn {
   border: none;
+  padding: 0.3rem 0.7rem;
+  border-radius: 3px;
+  margin-top: 0.3rem;
 }
 .create-tack-btn:hover {
   border: 1px solid #eee;
@@ -446,7 +454,8 @@ template {
   border: none;
   padding: 6px;
   border-radius: 4px;
-  background: #eee;
+  background: #dcd5d5;
+  width: 252px;
 }
 
 .create-task-input:focus {
@@ -454,4 +463,14 @@ template {
   padding: 6px;
   border-radius: 4px;
   background: rgb(207, 206, 206);
+}
+
+.drop-zone::-webkit-scrollbar {
+  width: 0.3rem;
+  height: 8px;
+  background-color: #aaa; /* or add it to the track */
+}
+
+.zone::-webkit-scrollbar-thumb {
+  background: #000;
 }
