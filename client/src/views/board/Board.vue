@@ -130,7 +130,7 @@ export default {
   background-color: #eee;
   margin-bottom: 10px;
   padding: 10px;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .drag-el {

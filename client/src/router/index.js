@@ -35,19 +35,19 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
-    meta: { layout: 'DefaultLayout', requiresAuth: false },
+    meta: { layout: 'AuthLayout', requiresAuth: false },
   },
   {
     path: '/register',
     name: 'register',
     component: Register,
-    meta: { layout: 'DefaultLayout', requiresAuth: false },
+    meta: { layout: 'AuthLayout', requiresAuth: false },
   },
   {
     path: '/board',
     name: 'board',
     component: Board,
-    meta: { layout: 'DefaultLayout', requiresAuth: false },
+    meta: { layout: 'DefaultLayout', requiresAuth: true },
     props: true,
   },
   {

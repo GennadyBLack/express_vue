@@ -401,7 +401,7 @@ template {
 .delete-all-error-bnt {
   top: -10px;
   left: -15px;
-  position: absolute;
+  /* position: absolute; */
   border-radius: 50%;
   border: 1px solid red;
   height: 2rem;

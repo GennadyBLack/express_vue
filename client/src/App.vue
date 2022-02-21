@@ -8,9 +8,11 @@
 import { fetchCurrentUser } from './composables/CurrentUserComposable/index'
 import Errors from './components/transitions/Errors'
 import DefaultLayout from './layouts/DefaultLayout.vue'
+import AuthLayout from './layouts/AuthLayout.vue'
 export default {
   name: 'app',
   components: {
+    AuthLayout,
     DefaultLayout,
     Errors,
   },
