@@ -65,9 +65,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && current_user.value) {
-    console.log(typeof to.meta.requiresAuth, current_user.value)
+    console.log(typeof to.meta.requiresAuth, current_user.value, 'router 1')
     next()
   } else if (to.meta.requiresAuth && !current_user.value) {
+    console.log(typeof to.meta.requiresAuth, current_user.value, 'router')
     next({ name: 'login' })
   } else {
     next()

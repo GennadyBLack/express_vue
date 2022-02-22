@@ -1,28 +1,32 @@
 <template>
   <div class="main-menu">
-    {{ availableRoutes }}
     <div class="main-menu-container">
       <div class="router-list">
-        <div
-          class="router-list--item"
-          v-for="route in availableRoutes"
-          :key="route"
-        >
+        {{ routes }}-routes
+        <div class="router-list--item" v-for="route in routes" :key="route">
           <router-link :to="{ name: route.name }">{{
             route.title
           }}</router-link>
         </div>
+        <button
+          v-if="current_user?.id ? current_user?.id : null"
+          @click="logout"
+        >
+          logout
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { user } from '../../composables/CurrentUserComposable/index'
+import { current_user } from '../../composables/CurrentUserComposable/index'
+import useLogout from '../../composables/authComposables/logout'
 import { MainMenuComposable } from '../../composables/navigationComposable/index'
 export default {
   setup() {
-    const { availableRoutes } = MainMenuComposable(user.value)
-    return { availableRoutes }
+    const { logout } = useLogout()
+    const { routes } = MainMenuComposable(current_user)
+    return { routes, logout, current_user }
   },
 }
 </script>
