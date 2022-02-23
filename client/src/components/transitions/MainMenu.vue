@@ -2,18 +2,21 @@
   <div class="main-menu">
     <div class="main-menu-container">
       <div class="router-list">
-        {{ routes }}-routes
-        <div class="router-list--item" v-for="route in routes" :key="route">
-          <router-link :to="{ name: route.name }">{{
-            route.title
-          }}</router-link>
+        <div class="router-list__left">
+          <div class="router-list--item" v-for="route in routes" :key="route">
+            <router-link :to="{ name: route.name }">{{
+              route.title
+            }}</router-link>
+          </div>
         </div>
-        <button
-          v-if="current_user?.id ? current_user?.id : null"
-          @click="logout"
-        >
-          logout
-        </button>
+        <div class="router-list__right">
+          <button
+            v-if="current_user?.id ? current_user?.id : null"
+            @click="logout"
+          >
+            logout
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -30,3 +33,9 @@ export default {
   },
 }
 </script>
+<style scoped>
+.menu-logout {
+  height: 30px;
+  background: #eee;
+}
+</style>

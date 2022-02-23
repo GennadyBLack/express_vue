@@ -1,5 +1,6 @@
 <template>
   <div>
+    <spiner />
     <input type="text" v-model="login_form.email" />
     <input type="text" v-model="login_form.password" />
 

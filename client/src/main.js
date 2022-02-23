@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import '../public/style/style.css'
 import { registerBaseComponents } from './helpers/Utils/registerGlobalComponents'
-
+import './plugins/vee-validate'
 import App from './App.vue'
 
 import './registerServiceWorker'

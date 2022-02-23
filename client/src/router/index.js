@@ -6,7 +6,9 @@ import Customer from '../components/Customer.vue'
 import Login from '../views/auth/LoginForm'
 import Register from '../views/auth/RegisterForm'
 import Board from '../views/board/Board'
-
+const test = (props) => {
+  console.log(props, 'TSETSS')
+}
 const routes = [
   {
     path: '/',
@@ -65,12 +67,13 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && current_user.value) {
-    console.log(typeof to.meta.requiresAuth, current_user.value, 'router 1')
+    console.log(current_user.value.id, 'router 1')
     next()
   } else if (to.meta.requiresAuth && !current_user.value) {
-    console.log(typeof to.meta.requiresAuth, current_user.value, 'router')
+    console.log(current_user.value, 'router')
     next({ name: 'login' })
   } else {
+    test(current_user)
     next()
   }
 })

@@ -17,6 +17,7 @@ export const registerBaseComponents = (vm) => {
       const componentName = upperFirst(
         camelCase(fileName.replace(/\.\w+$/, ''))
       )
+      // console.log(componentName)
       // Register component globally
       vm.component(componentName, componentConfig.default || componentConfig)
     })

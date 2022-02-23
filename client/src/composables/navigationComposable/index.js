@@ -1,4 +1,4 @@
-import { ref, watch, onMounted, computed } from 'vue'
+import { ref, watch, onMounted, computed, onUpdated, watchEffect } from 'vue'
 
 export function MainMenuComposable(props) {
   const availableRoutes = ref(null)
@@ -10,28 +10,17 @@ export function MainMenuComposable(props) {
   ]
 
   const filterRoutes = () => {
-    console.log(props)
+    const id = props.value ? props.value.id : false
+    console.log(id, ';;;d;;sdsd', props)
     availableRoutes.value = allRoutes.filter((item) => {
-      if (!!(props.value.id ? props.value.id : null) && !item.auth) {
-        console.log('1', props.value.id, !item.auth)
+      if (item.auth && !id) {
         return item
-      }
-      if (!!(!props.value.id ? null : props.value.id) && item.auth) {
-        console.log('2', props !== null && !item.auth)
+      } else if (!item.auth && id) {
         return item
       }
     })
   }
-
-  // onMounted(filterRoutes)
-
-  watch(
-    [props],
-    (value) => {
-      filterRoutes()
-    },
-    { deep: true }
-  )
+  watchEffect(filterRoutes)
 
   return { routes: computed(() => availableRoutes.value) }
 }
