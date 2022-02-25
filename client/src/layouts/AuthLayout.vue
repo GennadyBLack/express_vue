@@ -11,7 +11,7 @@ import MainMenu from '../components/transitions/MainMenu.vue'
 </script>
 <style>
 .main {
-  background: red;
+  background: rgb(214, 211, 211);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

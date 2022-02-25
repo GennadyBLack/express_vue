@@ -1,11 +1,26 @@
 <template>
   <div>
     <spiner />
-    <input type="text" v-model="login_form.email" />
-    <input type="text" v-model="login_form.password" />
-
-    <button @click="login">login</button>
-    <button @click="setDataForm">test</button>
+    <v-form v-slot="{ handleSubmit }">
+      <div class="login-form">
+        <v-input-field
+          v-model="login_form.email"
+          :rules="{ required: true }"
+          :placeholder="'Логин'"
+          name="mail"
+          :class="'mt-3'"
+        />
+        <v-input-field
+          v-model="login_form.password"
+          :rules="{ required: true }"
+          :placeholder="'Пароль'"
+          name="password"
+          :class="'mt-3'"
+        />
+        <button @click="setDataForm">test</button>
+        <button @click="handleSubmit(login)">Login</button>
+      </div>
+    </v-form>
   </div>
 </template>
 <script setup>
@@ -16,3 +31,10 @@ const setDataForm = () => {
   editField('password', 'adminus')
 }
 </script>
+<style scoped>
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+</style>

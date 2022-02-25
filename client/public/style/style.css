@@ -475,3 +475,8 @@ template {
 .zone::-webkit-scrollbar-thumb {
   background: #000;
 }
+
+.router-list__left {
+  display: flex;
+  flex-direction: row;
+}

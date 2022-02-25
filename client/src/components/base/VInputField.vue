@@ -51,6 +51,7 @@ export default {
     },
     maska: {
       type: [String, Array],
+      required: false,
     },
     modelValue: {
       type: [String, Number],
@@ -60,7 +61,7 @@ export default {
       default: false,
     },
     col: { type: Number },
-    textarea: { type: Boolean },
+    textarea: { type: Boolean, default: false },
   },
   computed: {
     name() {

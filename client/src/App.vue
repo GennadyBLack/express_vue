@@ -21,7 +21,7 @@ export default {
       return this.$route.meta.layout
     },
   },
-  mounted() {
+  created() {
     fetchCurrentUser()
   },
 }

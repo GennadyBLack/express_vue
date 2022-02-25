@@ -18,7 +18,6 @@ if (token) {
 // Main api function
 axiosInstance.interceptors.response.use(
   (res) => {
-    const token = getToken()
     if (token) {
       axiosInstance.defaults.headers.common['Authorization'] = `Token ${token}`
     }
@@ -35,7 +34,6 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
   (res) => {
-    const token = getToken()
     if (token) {
       axiosInstance.defaults.headers.common['Authorization'] = `Token ${token}`
     }

@@ -7,27 +7,27 @@
       v-if="textarea"
       v-model="model"
       :id="id"
-      class="input placeholder"
+      class="input"
       :placeholder="placeholder"
       :type="type"
-      v-maska="maska"
       :disabled="disabled"
       :style="{ height: `${col * 51}px` }"
     ></textarea>
+    <!-- v-maska="maska" -->
     <input
       v-else
       v-model="model"
       :id="id"
-      class="input placeholder"
+      class="input"
       :placeholder="placeholder"
       :type="type"
-      v-maska="maska"
       :disabled="disabled"
       :style="{ height: `${col * 51}px` }"
     />
   </div>
 </template>
 <script>
+import { getCurrentInstance } from 'vue'
 export default {
   emits: ['input:modelValue'],
   name: 'InputField',
@@ -73,7 +73,7 @@ export default {
     textarea: { type: Boolean, default: false },
   },
   mounted() {
-    this.id = this._uid
+    this.id = getCurrentInstance().uid
   },
   computed: {
     model: {
@@ -90,5 +90,8 @@ export default {
 <style>
 textarea {
   padding-top: 10px !important;
+}
+.input {
+  border-radius: 0.4rem;
 }
 </style>

@@ -6,13 +6,20 @@ export const current_user = computed(() => {
 })
 
 export const user = ref(null)
-export const fetchCurrentUser = () => {
+
+export const fetchCurrentUser = (config, func) => {
   try {
-    me().then((res) => (user.value = res.data.user))
+    me(config).then((res) => {
+      if (func) {
+        func()
+      }
+      user.value = res.data.user
+    })
   } catch (error) {
     console.log(error, 'from curent')
   }
 }
+
 export const setCurrentUser = (data) => {
   user.value = data
 }
