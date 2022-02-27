@@ -27,7 +27,20 @@
             ghost-class="ghost"
           >
             <template #item="{ element }">
-              <div class="drag-el">{{ element.title }} {{ element?.id }}</div>
+              <div class="drag-el">
+                <!-- MODAL TASK FORM START -->
+                <ToggleProvider>
+                  <template #activator="{ toggle }">
+                    <div @click="toggle">
+                      {{ element.title }} {{ element?.id }}
+                    </div>
+                  </template>
+                  <template #content="{ toggle }">
+                    <currentTask :toggle="toggle" :id="element?.id" />
+                  </template>
+                </ToggleProvider>
+                <!-- MODAL TASK FORM END -->
+              </div>
             </template>
             <template #footer>
               <!-- CREATE TASK FORM START -->
@@ -38,10 +51,14 @@
                   </button>
                 </template>
                 <template #content="{ toggle }">
-                  <createTastForm @blur="los(toggle)" :id="element?.id" />
+                  <createTastForm
+                    @blur="toggle"
+                    :id="element?.id"
+                    :update="fetchBoard"
+                  />
                 </template>
                 <template #btn="{ toggle }">
-                  <button @click="los(toggle)" class="create-tack-btn">
+                  <button @click="toggle" class="create-tack-btn">
                     Сохранить
                   </button>
                 </template>
@@ -72,17 +89,15 @@
 import { current_user } from '../../composables/CurrentUserComposable/index'
 import ToggleProvider from '../../components/common/ToggleProvider.vue'
 import createTastForm from '../../components/board/task/createTaskForm.vue'
+import currentTask from '../../components/board/task/currentTask.vue'
 import draggable from 'vuedraggable'
 import useBoard from '@/composables/boardComposables/useBoardComp'
-const { board, id, createUserBoard, createColunm, createTask } = useBoard()
+const { board, id, createUserBoard, createColunm, createTask, fetchBoard } =
+  useBoard()
 </script>
 <script>
 export default {
   methods: {
-    los(funk) {
-      funk()
-      console.log('BLUUUR')
-    },
     start(e) {
       e.clone.classList.add('rotated')
       console.log(e, 'START')

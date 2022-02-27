@@ -7,6 +7,7 @@ export const setNotice = (massage, type = 'error-message') => {
     notice_message: massage,
     type,
   })
+  setTimeout(deleteAllNotice, 5000)
 }
 
 export const deleteNotice = (ind) => {

@@ -6,11 +6,13 @@
 <script setup>
 import useTask from '../../../composables/TasksComposable/index'
 const { task, createTask } = useTask()
-const props = defineProps({ id: Number })
+const props = defineProps({ id: Number, update: Function })
 const emit = defineEmits(['blur'])
 
-const blur = () => {
+const blur = async () => {
+  await createTask(props?.id)
+  //update board data
+  await props.update()
   emit('blur')
-  createTask(props?.id)
 }
 </script>

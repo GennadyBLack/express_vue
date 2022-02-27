@@ -1,5 +1,5 @@
 <template><div class="loader">Loading...</div></template>
-<style scoped>
+<style scoped lang="scss">
 .loader,
 .loader:before,
 .loader:after {

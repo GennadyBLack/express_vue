@@ -17,9 +17,8 @@ export default () => {
     try {
       if (current_user.value.id && id?.value) {
         board.value = (await getBoardById(id?.value)).data
-      } else {
-        setNotice('need authorize or create board')
       }
+      console.log('fetc')
     } catch (error) {
       console.log(error, 'FROM BOARD COMPOSABLE')
     }
@@ -61,7 +60,7 @@ export default () => {
       const data = { title: 'task', description: 'description', order: 1 }
       console.log('ALOOOOOo')
       await addTask(id, data).then((res) => {
-        console.log(res), fetchBoard()
+        console.log(res)
       })
       //перезаписываю данные доски
     } catch (error) {

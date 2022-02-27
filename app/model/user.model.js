@@ -23,6 +23,9 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: "user",
       allowNull: false,
     },
+    active_board: {
+      type: Sequelize.INTEGER,
+    },
   });
 
   return User;

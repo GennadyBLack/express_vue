@@ -1,14 +1,12 @@
 import { ref, watch, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
 import { getTaskById } from '../../api/task'
-export default () => {
+export default (id) => {
   const editTaskForm = ref(null)
-  const route = useRoute()
-  const taskid = route?.params?.id
 
   const fetchTask = async () => {
     try {
-      editTaskForm.value = (await getTaskById(taskid)).data
+      console.log(id, 'ID')
+      editTaskForm.value = (await getTaskById(id)).data
     } catch (error) {
       console.log(error, 'Error from fetch task')
     }
@@ -24,4 +22,5 @@ export default () => {
     },
     { deep: true }
   )
+  return { editTaskForm }
 }
