@@ -21,8 +21,9 @@ export default {
       return this.$route.meta.layout
     },
   },
-  created() {
-    fetchCurrentUser()
+
+  async beforeCreate() {
+    await fetchCurrentUser()
   },
 }
 </script>

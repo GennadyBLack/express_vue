@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <input type="text" v-model="register_form.email" />
-    <input type="text" v-model="register_form.password" />
-    <input type="text" v-model="register_form.username" />
-    <button @click="register">login</button>
-    <button @click="setDataForm">test</button>
+  <div class="form">
+    <input type="text" v-model="register_form.email" class="form-field test" />
+    <input type="text" v-model="register_form.password" class="form-field" />
+    <input type="text" v-model="register_form.username" class="form-field" />
+    <button @click="register" class="form-field">login</button>
+    <button @click="setDataForm" class="form-field">test</button>
   </div>
 </template>
 <script setup>

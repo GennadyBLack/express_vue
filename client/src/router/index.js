@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { current_user } from '../composables/CurrentUserComposable/index'
+import {
+  current_user,
+  fetchCurrentUser,
+} from '../composables/CurrentUserComposable/index'
 import CustomersList from '../components/CustomersList.vue'
 import AddCustomer from '../components/AddCustomer.vue'
 import Customer from '../components/Customer.vue'
 import Login from '../views/auth/LoginForm'
 import Register from '../views/auth/RegisterForm'
 import Board from '../views/board/Board'
+import BoardsList from '../views/board/BoardsList'
 
 const routes = [
   {
@@ -51,9 +55,9 @@ const routes = [
     props: true,
   },
   {
-    path: '/board',
-    name: 'create',
-    component: Board,
+    path: '/boards',
+    name: 'board_list',
+    component: BoardsList,
     meta: { layout: 'DefaultLayout', requiresAuth: true },
     props: true,
   },
@@ -70,7 +74,8 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  if (!current_user.value) await fetchCurrentUser()
   if (to.meta.requiresAuth && current_user.value) {
     console.log(current_user.value.id, 'has user')
     next()

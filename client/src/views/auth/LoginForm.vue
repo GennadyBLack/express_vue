@@ -2,23 +2,23 @@
   <div>
     <spiner />
     <v-form v-slot="{ handleSubmit }">
-      <div class="login-form">
+      <div class="form">
         <v-input-field
           v-model="login_form.email"
           :rules="{ required: true }"
           :placeholder="'Логин'"
           name="mail"
-          :class="'mt-3'"
+          :class="'mt-3 form-field'"
         />
         <v-input-field
           v-model="login_form.password"
           :rules="{ required: true }"
           :placeholder="'Пароль'"
           name="password"
-          :class="'mt-3'"
+          :class="'mt-3 form-field'"
         />
-        <button @click="setDataForm">test</button>
-        <button @click="handleSubmit(login)">Login</button>
+        <button @click="setDataForm" class="form-field">test</button>
+        <button @click="handleSubmit(login)" class="form-field">Login</button>
       </div>
     </v-form>
   </div>

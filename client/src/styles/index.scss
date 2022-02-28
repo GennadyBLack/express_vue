@@ -7,6 +7,9 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+@import url(./auth/register_form.scss);
+@import url(./base/_variables.scss);
+@import url(./auth/auth_layout.scss);
 * {
   box-sizing: border-box;
 }
@@ -357,7 +360,7 @@ template {
   background: rgb(221, 213, 213);
 }
 #app {
-  background-color: aqua;
+  background-color: rgb(202, 202, 202);
 }
 .errors-container {
   box-shadow: 1px 3px 6px 3px black;
@@ -499,6 +502,9 @@ template {
   background: rgb(197, 202, 196);
   padding: 5px 8px;
   border-radius: 3px;
+  margin: auto 2px;
+}
+.main-menu_link:first {
   margin: auto 5px;
 }
 
@@ -512,4 +518,5 @@ template {
 }
 .router-list--item a:hover {
   color: rgb(27, 27, 29);
+  filter: contrast(130%);
 }

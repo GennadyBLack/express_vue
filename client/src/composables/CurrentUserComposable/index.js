@@ -7,14 +7,18 @@ export const current_user = computed(() => {
 
 export const user = ref(null)
 
-export const fetchCurrentUser = (config, func) => {
+export const fetchCurrentUser = async (config, func) => {
   try {
-    me(config).then((res) => {
-      if (func) {
-        func()
-      }
-      user.value = res.data.user
-    })
+    if (!current_user.value) {
+      await me(config).then((res) => {
+        if (func) {
+          func()
+        }
+        user.value = res.data.user
+      })
+    } else {
+      console.log('user already here')
+    }
   } catch (error) {
     console.log(error, 'from curent')
   }

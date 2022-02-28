@@ -2,15 +2,6 @@
   <div>
     <main-menu />
     <div class="default-container container-fluid">
-      <div class="left-menu">
-        <router-link
-          v-for="board in current_user?.boards"
-          :key="board.id"
-          :to="{ name: 'board', params: { id: board?.id } }"
-        >
-          {{ board?.title }}
-        </router-link>
-      </div>
       <div class="main-content"><router-view /></div>
     </div>
   </div>
