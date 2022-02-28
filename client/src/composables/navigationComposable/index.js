@@ -4,9 +4,10 @@ export function MainMenuComposable(props) {
   const availableRoutes = ref(null)
 
   const allRoutes = [
-    { name: 'login', title: 'Login', auth: true },
-    { name: 'register', title: 'register', auth: true },
-    { name: 'board', title: 'board', auth: false },
+    { name: 'login', title: 'Login', auth: true, type: 'button' },
+    { name: 'register', title: 'Register', auth: true, type: 'button' },
+    { name: 'board', title: 'Boards', auth: false, type: 'button' },
+    { name: 'create', title: 'Create', auth: false, type: 'button' },
   ]
 
   const filterRoutes = () => {

@@ -4,7 +4,7 @@
       <div class="router-list">
         <div class="router-list__left">
           <div class="router-list--item" v-for="route in routes" :key="route">
-            <router-link :to="{ name: route.name }">{{
+            <router-link :to="{ name: route.name }" class="main-menu_link">{{
               route.title
             }}</router-link>
           </div>
@@ -38,4 +38,9 @@ export default {
   height: 30px;
   background: #eee;
 }
+/* .router-list--item {
+}
+.router-list--item:hover {
+  background: rgb(243, 242, 237);
+} */
 </style>

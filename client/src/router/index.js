@@ -51,6 +51,13 @@ const routes = [
     props: true,
   },
   {
+    path: '/board',
+    name: 'create',
+    component: Board,
+    meta: { layout: 'DefaultLayout', requiresAuth: true },
+    props: true,
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'NotFound',
     component: () => import('../components/transitions/404'),
