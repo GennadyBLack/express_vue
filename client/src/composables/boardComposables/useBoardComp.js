@@ -18,7 +18,6 @@ export default () => {
       if (current_user.value.id && id?.value) {
         board.value = (await getBoardById(id?.value)).data
       }
-      console.log('fetc')
     } catch (error) {
       console.log(error, 'FROM BOARD COMPOSABLE')
     }

@@ -10,6 +10,7 @@ import Login from '../views/auth/LoginForm'
 import Register from '../views/auth/RegisterForm'
 import Board from '../views/board/Board'
 import BoardsList from '../views/board/BoardsList'
+import BoardEdit from '../views/board/BoardEdit'
 
 const routes = [
   {
@@ -62,6 +63,13 @@ const routes = [
     props: true,
   },
   {
+    path: '/board_edit/:id',
+    name: 'board_edit',
+    component: BoardEdit,
+    meta: { layout: 'DefaultLayout', requiresAuth: true },
+    props: true,
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'NotFound',
     component: () => import('../components/transitions/404'),
@@ -77,13 +85,10 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   if (!current_user.value) await fetchCurrentUser()
   if (to.meta.requiresAuth && current_user.value) {
-    console.log(current_user.value.id, 'has user')
     next()
   } else if (to.meta.requiresAuth && !current_user.value) {
-    console.log(current_user.value, 'not user')
     next({ name: 'login' })
   } else {
-    console.log('no one')
     next()
   }
 })
