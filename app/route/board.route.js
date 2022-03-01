@@ -8,7 +8,7 @@ module.exports = function (app) {
   app.get("/api/boards/:boardId", boards.findById);
 
   // Update a Customer with Id
-  app.put("/api/boards/:boardsId", boards.update);
+  app.patch("/api/boards/:boardsId", boards.update);
 
   // Delete a Customer with Id
   app.delete("/api/boards/:boardsId", boards.delete);

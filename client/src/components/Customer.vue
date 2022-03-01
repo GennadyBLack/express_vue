@@ -1,11 +1,12 @@
 <template>
   <div v-if="customer">
-    <h4>Customer</h4>
-    {{ customer.title }}
-    <div><label>Name: </label> {{ customers.title }}</div>
-    <div><label>description: </label> {{ customers.description }}</div>
-    <div><label>Active: </label> {{ customers.active }}</div>
-
+    <error-boundary>
+      <h4>Customer</h4>
+      {{ customer.title }}
+      <div><label>Name: </label> {{ customers.titleв }}</div>
+      <div><label>description: </label> {{ customers.description }}</div>
+      <div><label>Active: </label> {{ customers.active }}</div>
+    </error-boundary>
     <span
       v-if="this.customer.active"
       v-on:click="updateActive(false)"

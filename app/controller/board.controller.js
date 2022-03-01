@@ -28,19 +28,16 @@ exports.findById = (req, res) => {
 };
 
 // Update a Board
-exports.update = (req, res) => {
-  var Board = req.body;
-  const id = req.params.boardId;
-  Board.update(
-    { name: req.body.name, age: req.body.age, active: req.body.active },
-    { where: { id: req.params.boardId } }
-  )
-    .then(() => {
-      res.status(200).send(Board);
-    })
-    .catch((err) => {
-      res.status(500).send("Error -> " + err);
-    });
+exports.update = async (req, res) => {
+  const id = req.params.boardsId;
+  await Board.update(
+    { ...req.body.data },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
 };
 
 // Delete a Board by Id

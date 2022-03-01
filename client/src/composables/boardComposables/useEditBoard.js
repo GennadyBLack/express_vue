@@ -17,12 +17,12 @@ export default () => {
       if (id?.value) {
         boardForm.value = mappedEditForm((await getBoardById(id?.value)).data)
       }
-      console.log('fetc')
     } catch (error) {
       console.log(error, 'FROM BOARD COMPOSABLE')
     }
   }
   const saveBoardForm = async () => {
+    console.log('alooooo')
     await updateBoard(id.value, mappedSaveForm(boardForm.value))
     // await updateBoard()
   }
