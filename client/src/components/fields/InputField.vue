@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="input-wrapper">
     <label :for="id">
       {{ label }}
     </label>
@@ -18,7 +18,7 @@
       v-else
       v-model="model"
       :id="id"
-      class="input"
+      class="input-field"
       :placeholder="placeholder"
       :type="type"
       :disabled="disabled"

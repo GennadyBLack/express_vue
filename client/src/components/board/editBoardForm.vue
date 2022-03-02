@@ -5,21 +5,24 @@
       :rules="{ required: true }"
       :placeholder="'Название'"
       name="mail"
-      :class="'mt-3 form-field'"
+      :class="'form-field'"
+      label="Название: "
     />
     <v-input-field
       v-model="board.description.val"
       :rules="{ required: true }"
       :placeholder="'Описание'"
       name="mail"
-      :class="'mt-3 form-field'"
+      :class="'form-field'"
+      label="Описание: "
     />
     <v-input-field
       v-model="board.background.val"
       :rules="{ required: true }"
       :placeholder="'Фон'"
       name="mail"
-      :class="'mt-3 form-field'"
+      :class="' form-field'"
+      label="Фон: "
     />
     <button class="btn save-btn" @click="saveBoardForm">Сохранить</button>
   </div>

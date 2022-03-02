@@ -1,6 +1,5 @@
 <template>
   <div>
-    <spiner />
     <v-form v-slot="{ handleSubmit }">
       <div class="form">
         <v-input-field
@@ -8,17 +7,23 @@
           :rules="{ required: true }"
           :placeholder="'Логин'"
           name="mail"
-          :class="'mt-3 form-field'"
+          :class="' form-field'"
+          label="Логин: "
         />
         <v-input-field
           v-model="login_form.password"
           :rules="{ required: true }"
           :placeholder="'Пароль'"
           name="password"
-          :class="'mt-3 form-field'"
+          :class="' form-field'"
+          label="Пароль: "
         />
-        <button @click="setDataForm" class="form-field">test</button>
-        <button @click="handleSubmit(login)" class="form-field">Login</button>
+        <div class="form-btns">
+          <button @click="setDataForm" class="form-field btn">test</button>
+          <button @click="handleSubmit(login)" class="form-field btn">
+            Login
+          </button>
+        </div>
       </div>
     </v-form>
   </div>

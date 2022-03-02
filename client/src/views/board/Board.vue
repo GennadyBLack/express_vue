@@ -72,16 +72,16 @@
       /**========== column footer */
     </draggable>
     <div>
-      <button @click="createUserBoard">Доска</button>
-      <button @click="createColunm">Колонка</button>
+      <button class="btn" @click="createUserBoard">Доска</button>
+      <button class="btn" @click="createColunm">Колонка</button>
     </div>
     <!-- TEST -->
   </div>
   <div v-else>
     <h1>Sorry, you dont have any boards</h1>
     <div>
-      <button @click="createUserBoard">Доска</button>
-      <button @click="createColunm">Колонка</button>
+      <button class="btn" @click="createUserBoard">Доска</button>
+      <button class="btn" @click="createColunm">Колонка</button>
     </div>
   </div>
 </template>

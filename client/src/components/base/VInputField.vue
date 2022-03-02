@@ -1,26 +1,28 @@
 <template>
-  <Field
-    :name="name"
-    v-slot="{ field, errorMessage }"
-    :rules="{ ...rules }"
-    :validateOnChange="true"
-    :validateOnInput="true"
-    v-model="model"
-  >
-    <InputField
-      :col="col"
-      :disabled="disabled"
+  <div class="input">
+    <Field
+      :name="name"
+      v-slot="{ field, errorMessage }"
+      :rules="{ ...rules }"
+      :validateOnChange="true"
+      :validateOnInput="true"
       v-model="model"
-      v-bind="field"
-      :label="label"
-      :placeholder="name"
-      :type="type"
-      :maska="maska"
-      :modelValue="model"
-      :textarea="textarea"
-    />
-    <div class="input-warning">{{ errorMessage }}</div>
-  </Field>
+    >
+      <InputField
+        :col="col"
+        :disabled="disabled"
+        v-model="model"
+        v-bind="field"
+        :label="label"
+        :placeholder="name"
+        :type="type"
+        :maska="maska"
+        :modelValue="model"
+        :textarea="textarea"
+      />
+      <div class="input-warning">{{ errorMessage }}</div>
+    </Field>
+  </div>
 </template>
 
 <script>

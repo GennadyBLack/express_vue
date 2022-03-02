@@ -13,6 +13,7 @@
           <button
             v-if="current_user?.id ? current_user?.id : null"
             @click="logout"
+            class="btn"
           >
             logout
           </button>

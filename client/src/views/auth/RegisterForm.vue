@@ -1,11 +1,38 @@
 <template>
-  <div class="form">
-    <input type="text" v-model="register_form.email" class="form-field test" />
-    <input type="text" v-model="register_form.password" class="form-field" />
-    <input type="text" v-model="register_form.username" class="form-field" />
-    <button @click="register" class="form-field">login</button>
-    <button @click="setDataForm" class="form-field">test</button>
-  </div>
+  <v-form v-slot="{ handleSubmit }">
+    <div class="form">
+      <v-input-field
+        v-model="register_form.email"
+        :rules="{ required: true }"
+        :placeholder="'Логин'"
+        name="mail"
+        :class="' form-field'"
+        label="Логин: "
+      />
+      <v-input-field
+        v-model="register_form.password"
+        :rules="{ required: true }"
+        :placeholder="'Пароль'"
+        name="password"
+        :class="' form-field'"
+        label="Пароль: "
+      />
+      <v-input-field
+        v-model="register_form.username"
+        :rules="{ required: true }"
+        :placeholder="'Имя'"
+        name="password"
+        :class="' form-field'"
+        label="Имя: "
+      />
+      <div class="form-btns">
+        <button @click="setDataForm" class="btn form-field">test</button>
+        <button @click="handleSubmit(register)" class="btn form-field">
+          Register
+        </button>
+      </div>
+    </div>
+  </v-form>
 </template>
 <script setup>
 import useRegister from '../../composables/authComposables/register'
@@ -16,3 +43,4 @@ const setDataForm = () => {
   editField('username', 'adminus')
 }
 </script>
+//register_form

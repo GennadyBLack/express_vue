@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="default-layout">
     <main-menu />
     <div class="default-container container-fluid">
       <div class="main-content"><router-view /></div>
