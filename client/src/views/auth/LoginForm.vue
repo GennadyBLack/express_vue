@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-form v-slot="{ handleSubmit }">
-      <div class="form">
+      <div class="form w-50">
         <v-input-field
           v-model="login_form.email"
           :rules="{ required: true }"

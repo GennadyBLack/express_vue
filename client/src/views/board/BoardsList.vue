@@ -16,6 +16,7 @@
         {{ board?.title }}
       </router-link>
     </div>
+    <router-link class="btn" :to="{ name: 'board_create' }">create</router-link>
   </div>
 </template>
 <script setup>

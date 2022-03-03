@@ -1,6 +1,8 @@
 <template>
   <div v-if="current_user?.boards.length > 0">
     <!-- /** ==================== start of draggable COLUMN */ -->
+    <button class="btn" @click="createColunm">Колонка</button>
+
     <draggable
       class="drop-zone__wrapper"
       :list="board?.columns"
@@ -71,18 +73,12 @@
 
       /**========== column footer */
     </draggable>
-    <div>
-      <button class="btn" @click="createUserBoard">Доска</button>
-      <button class="btn" @click="createColunm">Колонка</button>
-    </div>
+
     <!-- TEST -->
   </div>
   <div v-else>
     <h1>Sorry, you dont have any boards</h1>
-    <div>
-      <button class="btn" @click="createUserBoard">Доска</button>
-      <button class="btn" @click="createColunm">Колонка</button>
-    </div>
+    <div></div>
   </div>
 </template>
 <script setup>

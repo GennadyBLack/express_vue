@@ -11,6 +11,7 @@ import Register from '../views/auth/RegisterForm'
 import Board from '../views/board/Board'
 import BoardsList from '../views/board/BoardsList'
 import BoardEdit from '../views/board/BoardEdit'
+import createBoardForm from '../components/board/createBoardForm'
 
 const routes = [
   {
@@ -66,6 +67,14 @@ const routes = [
     path: '/board_edit/:id',
     name: 'board_edit',
     component: BoardEdit,
+    meta: { layout: 'DefaultLayout', requiresAuth: true },
+    props: true,
+  },
+  ,
+  {
+    path: '/board_create',
+    name: 'board_create',
+    component: createBoardForm,
     meta: { layout: 'DefaultLayout', requiresAuth: true },
     props: true,
   },

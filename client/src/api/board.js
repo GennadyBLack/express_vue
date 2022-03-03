@@ -4,8 +4,8 @@ export const deleteBoardById = (id) => {
   return api.delete('/boards', { id })
 }
 
-export const createBoard = (data) => {
-  return api.post('/boards', { data })
+export const createBoard = (id, data) => {
+  return api.post(`/users/${id}/boards`, data)
 }
 
 export const updateBoard = (id, data) => {

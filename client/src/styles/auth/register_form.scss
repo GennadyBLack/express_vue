@@ -1,12 +1,9 @@
 @import url(../base/_variables.scss);
 .form {
-  height: 500px;
-  width: 500px;
   border-radius: 10px;
-  position: absolute;
+  padding: 1rem;
   z-index: 10;
-  top: 10%;
-  left: 30%;
+  margin: 10% auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -18,4 +15,8 @@
   &-field {
     margin: 0.5rem;
   }
+}
+.wrapper {
+  display: flex;
+  align-items: center;
 }

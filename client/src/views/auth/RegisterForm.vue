@@ -1,30 +1,38 @@
-<template>
+<template class="wrapper">
   <v-form v-slot="{ handleSubmit }">
-    <div class="form">
-      <v-input-field
-        v-model="register_form.email"
-        :rules="{ required: true }"
-        :placeholder="'Логин'"
-        name="mail"
-        :class="' form-field'"
-        label="Логин: "
-      />
-      <v-input-field
-        v-model="register_form.password"
-        :rules="{ required: true }"
-        :placeholder="'Пароль'"
-        name="password"
-        :class="' form-field'"
-        label="Пароль: "
-      />
-      <v-input-field
-        v-model="register_form.username"
-        :rules="{ required: true }"
-        :placeholder="'Имя'"
-        name="password"
-        :class="' form-field'"
-        label="Имя: "
-      />
+    <div class="form w-50">
+      <div class="row">
+        <v-input-field
+          v-model="register_form.email"
+          :rules="{ required: true }"
+          :placeholder="'Логин'"
+          name="mail"
+          :class="'col-12 form-field'"
+          label="Логин: "
+        />
+      </div>
+      <div class="row">
+        <v-input-field
+          v-model="register_form.password"
+          :rules="{ required: true }"
+          :placeholder="'Пароль'"
+          name="password"
+          :class="'col-12 form-field'"
+          label="Пароль: "
+        />
+      </div>
+
+      <div class="row">
+        <v-input-field
+          v-model="register_form.username"
+          :rules="{ required: true }"
+          :placeholder="'Имя'"
+          name="password"
+          :class="'col-12 form-field'"
+          label="Имя: "
+        />
+      </div>
+
       <div class="form-btns">
         <button @click="setDataForm" class="btn form-field">test</button>
         <button @click="handleSubmit(register)" class="btn form-field">
