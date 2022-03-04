@@ -50,7 +50,7 @@ const routes = [
     meta: { layout: 'AuthLayout', requiresAuth: false },
   },
   {
-    path: '/board',
+    path: '/board/:id',
     name: 'board',
     component: Board,
     meta: { layout: 'DefaultLayout', requiresAuth: true },

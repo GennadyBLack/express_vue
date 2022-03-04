@@ -31,12 +31,14 @@ const { editTaskForm } = editTask(props.id)
   border-radius: 3px;
   display: block;
   position: absolute;
-  background: #cec9c9;
+  // background: #cec9c9;
   top: 12%;
   height: 38rem;
   width: 30rem;
   left: 40%;
   z-index: 10;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  // filter: blur(4px);
   &-header__title {
     font-size: 20px;
     font-weight: bold;

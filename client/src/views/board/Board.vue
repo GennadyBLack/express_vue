@@ -1,7 +1,6 @@
 <template>
   <div v-if="current_user?.boards.length > 0">
     <!-- /** ==================== start of draggable COLUMN */ -->
-    <button class="btn" @click="createColunm">Колонка</button>
 
     <draggable
       class="drop-zone__wrapper"
@@ -13,9 +12,9 @@
       @end="end"
       @start="start"
     >
-      <!-- <template #header="{ element }">
-        {{ element.title }}
-      </template> -->
+      <template #header>
+        <button class="btn create-btn" @click="createColunm">Колонка</button>
+      </template>
       <template #item="{ element }">
         <div class="drop-zone">
           <div class="drop-zone__title">
@@ -23,6 +22,7 @@
           </div>
           <!-- /** ========================!start of draggable TASK */ -->
           <draggable
+            class="drop-zone__column__wrapper"
             :list="element?.tasks"
             group="task"
             @change="log"
@@ -127,7 +127,7 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 .ghost {
   background: rgb(160, 116, 116);
 }
@@ -138,6 +138,7 @@ export default {
   overflow-x: scroll;
 }
 .drop-zone {
+  min-height: 6rem;
   height: fit-content;
   border-radius: 5px;
   margin: 0.2rem;
@@ -148,6 +149,11 @@ export default {
   overflow-y: scroll;
   max-height: 87vh;
   /* height: fit-content; */
+  &__title {
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }
 }
 
 .drag-el {
