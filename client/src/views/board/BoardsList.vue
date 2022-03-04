@@ -12,8 +12,10 @@
       >
         &#9998;
       </router-link>
-      <router-link :to="{ name: 'board', params: { id: board?.id } }">
-        {{ board?.title }}
+      <router-link
+        :to="{ name: 'board', params: { id: board?.id } }"
+        v-slice="{ text: board?.title, index: 11 }"
+      >
       </router-link>
     </div>
     <router-link class="btn" :to="{ name: 'board_create' }">create</router-link>
@@ -38,6 +40,10 @@ import { current_user } from '../../composables/CurrentUserComposable/index'
     margin: 1rem;
     border-radius: 3px;
     position: relative;
+    a {
+      color: black;
+      text-decoration: none;
+    }
   }
 }
 .edit-board__btn {

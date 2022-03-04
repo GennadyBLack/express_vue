@@ -13,6 +13,9 @@
       @end="end"
       @start="start"
     >
+      <!-- <template #header="{ element }">
+        {{ element.title }}
+      </template> -->
       <template #item="{ element }">
         <div class="drop-zone">
           <div class="drop-zone__title">
@@ -135,6 +138,7 @@ export default {
   overflow-x: scroll;
 }
 .drop-zone {
+  height: fit-content;
   border-radius: 5px;
   margin: 0.2rem;
   min-width: 17rem;
@@ -142,6 +146,8 @@ export default {
   margin-bottom: 10px;
   padding: 10px;
   overflow-y: scroll;
+  max-height: 87vh;
+  /* height: fit-content; */
 }
 
 .drag-el {

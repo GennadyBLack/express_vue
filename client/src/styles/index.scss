@@ -479,9 +479,21 @@ template {
   height: 8px;
   background-color: #aaa; /* or add it to the track */
 }
+body {
+  overflow: hidden;
+}
 
-.zone::-webkit-scrollbar-thumb {
-  background: #000;
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 8px;
+  background-color: #aaa; /* or add it to the track */
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(255, 255, 255);
+}
+
+.drop-zone::-webkit-scrollbar-thumb {
+  background: rgb(248, 248, 248);
 }
 
 .router-list__left {
@@ -527,4 +539,11 @@ template {
 .router-list--item a:hover {
   color: rgb(27, 27, 29);
   filter: contrast(130%);
+}
+
+.w-40 {
+  width: 40% !important;
+}
+.w-30 {
+  width: 30% !important;
 }
