@@ -5,20 +5,21 @@
       v-for="board in current_user?.boards"
       :key="board.id"
       :style="{ background: board?.background }"
+      @click.stop="$router.push({ name: 'board', params: { id: board?.id } })"
     >
-      <router-link
-        :to="{ name: 'board_edit', params: { id: board?.id } }"
+      <div
+        @click.stop="
+          $router.push({ name: 'board_edit', params: { id: board?.id } })
+        "
         class="btn edit-board__btn"
       >
         &#9998;
-      </router-link>
-      <router-link
-        :to="{ name: 'board', params: { id: board?.id } }"
-        v-slice="{ text: board?.title, index: 11 }"
-      >
-      </router-link>
+      </div>
+      <div class="">{{ board?.title }}</div>
     </div>
-    <router-link class="btn" :to="{ name: 'board_create' }">create</router-link>
+    <router-link class="btn btn-board" :to="{ name: 'board_create' }"
+      >Создать
+    </router-link>
   </div>
 </template>
 <script setup>
@@ -30,8 +31,9 @@ import { current_user } from '../../composables/CurrentUserComposable/index'
   flex-direction: row;
   flex-wrap: wrap;
   &__item {
-    width: 10rem;
-    height: 10rem;
+    position: relative;
+    width: 18rem;
+    height: 25rem;
     background: inherit;
     display: flex;
     justify-content: center;
@@ -51,5 +53,10 @@ import { current_user } from '../../composables/CurrentUserComposable/index'
   font-size: 30px;
   right: 10px;
   top: 10px;
+  z-index: 100;
+}
+.btn-board {
+  margin-top: 15px;
+  height: 40px;
 }
 </style>

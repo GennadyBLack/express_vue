@@ -1,7 +1,7 @@
 import api from './index'
 
 export const deleteColumnById = (id) => {
-  return api.delete('/columns', { id })
+  return api.delete(`/columns/${id}`)
 }
 
 //* id - board id

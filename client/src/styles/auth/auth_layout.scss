@@ -1,5 +1,10 @@
 .auth-layout {
-  background-image: url('../../assets/log.jpg');
+  background-image: radial-gradient(
+    circle farthest-corner at 22.4% 21.7%,
+    rgba(4, 189, 228, 1) 0%,
+    rgba(2, 83, 185, 1) 100.2%
+  );
+  background: linear-gradient();
   height: 100vh;
   display: flex;
   flex-direction: column;

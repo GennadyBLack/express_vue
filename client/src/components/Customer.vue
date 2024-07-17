@@ -1,12 +1,12 @@
 <template>
   <div v-if="customer">
-    <error-boundary>
+    <ErrorBoundary>
       <h4>Customer</h4>
       {{ customer.title }}
       <div><label>Name: </label> {{ customers.titleв }}</div>
       <div><label>description: </label> {{ customers.description }}</div>
       <div><label>Active: </label> {{ customers.active }}</div>
-    </error-boundary>
+    </ErrorBoundary>
     <span
       v-if="this.customer.active"
       v-on:click="updateActive(false)"
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { ErrorBoundary } from 'rdbxxx'
 import { updateTask, deleteTask } from '../api/task'
 export default {
   computed: {

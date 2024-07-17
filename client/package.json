@@ -4,12 +4,16 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "@vee-validate/i18n": "^4.5.2",
     "@vee-validate/rules": "^4.5.2",
-    "@vueform/multiselect": "^2.2.0",
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
+    "@vue/babel-preset-jsx": "^1.4.0",
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "i": "^0.3.7",
@@ -17,22 +21,23 @@
     "maska": "^1.5.0",
     "moment": "^2.29.1",
     "npm": "^8.5.0",
+    "rdbxxx": "^0.1.65",
     "register-service-worker": "^1.7.1",
     "sass": "^1.49.8",
+    "sortablejs": "^1.15.2",
     "vee-validate": "^4.5.8",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vue3-date-time-picker": "^2.1.2",
-    "vuedraggable": "^4.1.0"
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-pwa": "~5.0.0",
     "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/compiler-sfc": "^3.4.30",
     "concurrently": "^7.0.0",
     "prettier": "2.5.1",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-loader": "^17.4.2"
   }
 }

@@ -87,9 +87,8 @@ exports.update = (req, res) => {
 
 // Delete a Column by Id
 exports.delete = (req, res) => {
-  const id = req.params.columnId;
   Column.destroy({
-    where: { id: id },
+    where: { id: req.params.columnId },
   })
     .then(() => {
       res.status(200).send("Column has been deleted!");

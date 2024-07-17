@@ -12,8 +12,16 @@ import Board from '../views/board/Board'
 import BoardsList from '../views/board/BoardsList'
 import BoardEdit from '../views/board/BoardEdit'
 import createBoardForm from '../components/board/createBoardForm'
+import Home from '../views/Home.vue'
 
 const routes = [
+  {
+    path: '/home',
+    name: 'home',
+    component: Home,
+    meta: { layout: 'DefaultLayout', requiresAuth: false },
+    props: true,
+  },
   {
     path: '/',
     name: 'tasks',

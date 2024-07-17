@@ -6,3 +6,21 @@ $contrast: contrast(150%);
 $hue: hue-rotate(20deg);
 $brightness: brightness(0.2);
 $blur: blur(5px);
+$column-width: 20rem;
+$column-header-background: #22272b;
+$column-header-color: white;
+
+$theme-colors: (
+  'primary': $base-color,
+  'contrast': $contrast,
+  'hue': $hue,
+  'brightness': $brightness,
+  'blur': $blur,
+);
+
+:root {
+  --column-width: 20rem;
+  --column-header-background: #22272b;
+  --column-header-color: white;
+  --column-max-height: 80vh;
+}

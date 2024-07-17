@@ -1,30 +1,20 @@
-.input-wrapper {
-}
-
-.input-field {
-  background: inherit;
-  border: none;
-  border-bottom: 1px solid #eee;
-}
-.input-wrapper label {
-  margin-right: 10px;
-  color: #eee;
-}
-
-input:active {
-  outline: none;
-  border: none !important;
-  border-bottom: 1px solid #eee;
-}
-
-input:focus {
-  border: none !important;
-  outline: none;
-  border-bottom: 1px solid #eee;
-}
-.input-warning {
+.default_input input {
   width: 100%;
-  height: 1.5rem;
-  align-items: center;
-  color: rgb(170, 52, 52);
+  height: 40px;
+}
+
+.task-form {
+  .default_input input {
+    width: 100%;
+    height: 40px;
+    background-color: #a1bdd914;
+    color: white;
+    border-radius: 10px;
+  }
+}
+
+.task-form__row {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }

@@ -1,13 +1,10 @@
 import { ref, watch, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getBoardById, updateBoard, createBoard } from '@/api/board'
-import { setNotice } from '../ErrorsComposable'
 import { current_user } from '../CurrentUserComposable/index'
 import board from '../../models/board'
-import {
-  mappedEditForm,
-  mappedSaveForm,
-} from '../../helpers/Utils/mappetEditForm'
+
+import { mappedEditForm, mappedSaveForm } from '@/helpers/Utils/mappetEditForm'
 
 export default () => {
   const route = useRoute()

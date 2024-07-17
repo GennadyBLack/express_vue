@@ -1,9 +1,7 @@
 <template>
   <div class="auth-layout">
     <main-menu />
-    <div class="auth-form">
-      <div class="main-content"><router-view /></div>
-    </div>
+    <div class="main-content"><router-view /></div>
   </div>
 </template>
 <script setup>

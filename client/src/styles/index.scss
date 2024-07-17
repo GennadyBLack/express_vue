@@ -431,6 +431,7 @@ template {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 40px;
 }
 
 .router-list--item {
@@ -546,4 +547,312 @@ body {
 }
 .w-30 {
   width: 30% !important;
+}
+
+.column-container {
+  overflow: hidden;
+  background: #101204;
+  width: var(--column-width);
+  position: relative;
+  transition: transform 0.2s ease;
+  height: fit-content;
+  border-radius: 10px;
+  min-width: 20rem;
+  flex-shrink: 0;
+}
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: var(--column-header-background);
+  cursor: grab;
+  color: white;
+}
+
+.column {
+  width: 100%;
+  border-radius: 4px;
+  overflow-y: auto;
+  // min-height: 2rem;
+  max-height: var(--column-max-height);
+}
+
+.column-footer {
+  color: white;
+  background: #22272b;
+  padding: 10px;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+  cursor: pointer;
+}
+
+.board {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.task {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task__icon {
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  min-height: 22px;
+  min-width: 22px;
+  display: none;
+}
+
+.task:hover .task__icon {
+  display: block;
+}
+
+.task__icon:hover {
+  opacity: 0.5;
+}
+
+:root {
+  --modal-shadow: rgba(0, 0, 0, 0.5);
+  --moodal-index: 9999;
+}
+
+.default-content {
+  width: -moz-fit-content;
+  width: fit-content;
+  overflow: visible;
+  z-index: var(--moodal-index);
+  display: flex;
+}
+.modal-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal-background-shadow {
+  background-color: var(--modal-shadow);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.default-toggler {
+  width: fit-content;
+}
+
+.content-position--center {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.content-position--right {
+  right: 0;
+  position: absolute;
+  top: 0;
+  width: 30%;
+}
+
+.content-position--left {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 30%;
+}
+
+.content-position--bottom {
+  left: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.content-position--top {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.full-screen {
+  left: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.bg-white {
+  width: 100%;
+  background-color: white;
+  overflow: scroll;
+}
+
+/* //ANIMATIONS
+  // You can also specify custom transition classes by passing the following props to <Transition>:
+  // enter-from-class
+  // enter-active-class
+  // enter-to-class
+  // leave-from-class
+  // leave-active-class
+  // leave-to-class */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.vh-100 {
+  height: 100vh;
+}
+
+.wv-100 {
+  width: 100vw;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.committee-enter-from {
+  opacity: 0;
+  transform: translateX(-3rem);
+}
+.committee-enter-active {
+  transition: all 1s ease-in;
+}
+.committee-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.35s ease;
+}
+
+.fade-enter-from,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.task__modal {
+  background: #101204;
+  min-width: 40vw;
+  color: white;
+  border-radius: 20px;
+  min-height: 40vh;
+}
+.task-form {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.task-form__title {
+  padding: 10px;
+  background: var(--column-header-background);
+  border-top-left-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-right-radius: 20px;
+}
+
+.task-form__btn {
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.column-settings {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--column-header-background);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+.column-settings li {
+  list-style: none;
+  display: block;
+}
+
+.column-settings li:hover {
+  opacity: 0.7;
 }

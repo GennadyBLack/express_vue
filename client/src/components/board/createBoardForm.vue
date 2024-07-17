@@ -1,7 +1,7 @@
 <template>
-  <spiner v-if="!board" />
+  <Spiner :loading="!board" />
   <div class="form w-50" v-if="board">
-    <v-input-field
+    <Field
       v-model="board.title.val"
       :rules="{ required: true }"
       :placeholder="'Название'"
@@ -9,7 +9,7 @@
       :class="'form-field'"
       label="Название: "
     />
-    <v-input-field
+    <Field
       v-model="board.description.val"
       :rules="{ required: true }"
       :placeholder="'Описание'"
@@ -17,7 +17,7 @@
       :class="'form-field'"
       label="Описание: "
     />
-    <v-input-field
+    <Field
       v-model="board.background.val"
       :rules="{ required: true }"
       :placeholder="'Фон'"
@@ -29,6 +29,7 @@
   </div>
 </template>
 <script setup>
-import useEditBoard from '../../composables/boardComposables/useEditBoard'
+import { Form, Field, Spiner } from 'rdbxxx'
+import useEditBoard from '@/composables/boardComposables/useEditBoard'
 const { board, saveBoardForm } = useEditBoard()
 </script>

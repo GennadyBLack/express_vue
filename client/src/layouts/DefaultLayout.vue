@@ -7,10 +7,9 @@
   </div>
 </template>
 <script setup>
-import { current_user } from '@/composables/CurrentUserComposable/index'
 import MainMenu from '../components/transitions/MainMenu.vue'
 </script>
-<style scoped>
+<style>
 .default-container {
   display: flex;
   flex-direction: row;
@@ -18,6 +17,7 @@ import MainMenu from '../components/transitions/MainMenu.vue'
 }
 .main-content {
   width: 100%;
+  min-height: 100vh;
 }
 .left-menu {
   background: rgb(219, 205, 205);

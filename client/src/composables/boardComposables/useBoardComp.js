@@ -56,10 +56,13 @@ export default () => {
    */
   const createTask = async (id) => {
     try {
-      const data = { title: 'task', description: 'description', order: 1 }
-      console.log('ALOOOOOo')
+      const data = {
+        title: 'Новая задача',
+        description: 'Новая задача описание',
+        order: 1,
+      }
       await addTask(id, data).then((res) => {
-        console.log(res)
+        fetchBoard()
       })
       //перезаписываю данные доски
     } catch (error) {
@@ -68,7 +71,7 @@ export default () => {
   }
   watch(
     [id],
-    (value) => {
+    () => {
       fetchBoard()
     },
     { deep: true }
@@ -80,6 +83,7 @@ export default () => {
 
   return {
     board: computed(() => board.value),
+    columns: computed(() => board?.value?.columns ?? []),
     fetchBoard,
     id,
     createUserBoard,

@@ -1,8 +1,8 @@
-<template class="wrapper">
-  <v-form v-slot="{ handleSubmit }">
-    <div class="form w-40">
+<template>
+  <div class="login-form">
+    <Form v-slot="{ handleSubmit }" class="form-wrapper">
       <div class="row">
-        <v-input-field
+        <Field
           v-model="register_form.email"
           :rules="{ required: true }"
           :placeholder="'Логин'"
@@ -12,7 +12,7 @@
         />
       </div>
       <div class="row">
-        <v-input-field
+        <Field
           v-model="register_form.password"
           :rules="{ required: true }"
           :placeholder="'Пароль'"
@@ -23,7 +23,7 @@
       </div>
 
       <div class="row">
-        <v-input-field
+        <Field
           v-model="register_form.username"
           :rules="{ required: true }"
           :placeholder="'Имя'"
@@ -34,15 +34,14 @@
       </div>
 
       <div class="form-btns">
-        <button @click="setDataForm" class="btn form-field">test</button>
-        <button @click="handleSubmit(register)" class="btn form-field">
-          Register
-        </button>
+        <Btn @click="setDataForm" class="base-btn">test</Btn>
+        <Btn @click="handleSubmit(register)" class="base-btn"> Register </Btn>
       </div>
-    </div>
-  </v-form>
+    </Form>
+  </div>
 </template>
 <script setup>
+import { Form, Field, Btn } from 'rdbxxx'
 import useRegister from '../../composables/authComposables/register'
 const { register, register_form, editField } = useRegister()
 const setDataForm = () => {

@@ -16,20 +16,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("./app/config/db.config.js");
 const User = db.user;
+
 // force: true will drop the table if it already exists
 db.sequelize.sync({ force: false }).then(() => {
   console.log("Drop and Resync with { force: true }");
   // initial();
 });
 
-// function initial() {
-//   const user = User.create({
-//     username: "admin",
-//     email: "admin@mail.ru",
-//     password: "admin",
-//     role: "admin",
-//   });
-// }
+function initial() {
+  const user = User.create({
+    username: "admin",
+    email: "admin@mail.ru",
+    password: "admin",
+    role: "admin",
+  });
+}
 
 //Routes
 require("./app/route/auth.route.js")(app);

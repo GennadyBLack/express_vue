@@ -1,172 +1,117 @@
 <template>
-  <div v-if="current_user?.boards.length > 0">
-    <!-- /** ==================== start of draggable COLUMN */ -->
-
-    <draggable
-      class="drop-zone__wrapper"
-      :list="board?.columns"
-      ghost-class="ghost"
-      group="collumn"
-      @change="log"
-      itemKey="id"
-      @end="end"
-      @start="start"
+  <div ref="board" class="board">
+    <div
+      v-for="(column, index) in sortedColumns"
+      :key="column.id"
+      class="column-container"
     >
-      <template #header>
-        <button class="btn create-btn" @click="createColunm">Колонка</button>
-      </template>
-      <template #item="{ element }">
-        <div class="drop-zone">
-          <div class="drop-zone__title">
-            {{ element.title }} {{ element?.id }}
-          </div>
-          <!-- /** ========================!start of draggable TASK */ -->
-          <draggable
-            class="drop-zone__column__wrapper"
-            :list="element?.tasks"
-            group="task"
-            @change="log"
-            itemKey="id"
-            @end="end"
-            @start="start"
-            ghost-class="ghost"
-          >
-            <template #item="{ element }">
-              <div class="drag-el">
-                <!-- MODAL TASK FORM START -->
-                <ToggleProvider>
-                  <template #activator="{ toggle }">
-                    <div @click="toggle">
-                      {{ element.title }} {{ element?.id }}
-                    </div>
-                  </template>
-                  <template #content="{ toggle }">
-                    <currentTask :toggle="toggle" :id="element?.id" />
-                  </template>
-                </ToggleProvider>
-                <!-- MODAL TASK FORM END -->
+      <div
+        class="column-header"
+        @mousedown="onColumnMouseDown($event, index)"
+        @touchstart="onColumnMouseDown($event, index)"
+      >
+        {{ column.title }}
+        <div>
+          <Dropdown>
+            <template #default> &#x2630; </template>
+            <template #content>
+              <div class="column-settings">
+                <ul>
+                  <li @click="() => deleteColumn(column?.id)">Удалить</li>
+                </ul>
               </div>
             </template>
-            <template #footer>
-              <!-- CREATE TASK FORM START -->
-              <ToggleProvider>
-                <template #activator="{ toggle }">
-                  <button @click="toggle" class="create-tack-btn">
-                    Добавить задачу
-                  </button>
-                </template>
-                <template #content="{ toggle }">
-                  <createTastForm
-                    @blur="toggle"
-                    :id="element?.id"
-                    :update="fetchBoard"
-                  />
-                </template>
-                <template #btn="{ toggle }">
-                  <button @click="toggle" class="create-tack-btn">
-                    Сохранить
-                  </button>
-                </template>
-              </ToggleProvider>
-              <!-- CREATE TASK FORM END -->
-            </template>
-          </draggable>
+          </Dropdown>
         </div>
-      </template>
-
-      /**========== column footer */
-    </draggable>
-
-    <!-- TEST -->
-  </div>
-  <div v-else>
-    <h1>Sorry, you dont have any boards</h1>
-    <div></div>
+      </div>
+      <Column
+        :column="column"
+        :columnIndex="index"
+        @moveTask="moveTask"
+        :updateBoard="fetchBoard"
+      />
+      <div class="column-footer" @click="() => createTask(column?.id)">
+        + добавить задачу
+      </div>
+    </div>
+    <Btn
+      title="Добавить колонку"
+      class="btn"
+      style="
+        height: 50px;
+        min-width: 16rem;
+        margin-top: 4px;
+        margin-right: 20px;
+      "
+      @click="createColunm"
+    />
   </div>
 </template>
+
 <script setup>
-import { current_user } from '../../composables/CurrentUserComposable/index'
-import ToggleProvider from '../../components/common/ToggleProvider.vue'
-import createTastForm from '../../components/board/task/createTaskForm.vue'
-import currentTask from '../../components/board/task/currentTask.vue'
-import draggable from 'vuedraggable'
+import { deleteColumnById } from '../../api/column'
+import { ref, computed, onMounted } from 'vue'
+import Column from './Column.vue'
+import Sortable from 'sortablejs'
+import { Btn, Dropdown } from 'rdbxxx'
 import useBoard from '@/composables/boardComposables/useBoardComp'
-const { board, id, createUserBoard, createColunm, createTask, fetchBoard } =
-  useBoard()
-</script>
-<script>
-export default {
-  methods: {
-    start(e) {
-      e.clone.classList.add('rotated')
-      console.log(e, 'START')
-    },
-    end(e) {
-      console.log(e, 'END')
-    },
-    log(item) {
-      console.log(item, 'args')
-    },
-    startDrag(evt, item) {
-      console.log(evt, item)
-      evt.dataTransfer.dropEffect = 'move'
-      evt.dataTransfer.effectAllowed = 'move'
-      evt.dataTransfer.setData('itemID', item.id)
-    },
-    onDrop(evt, list) {
-      const itemID = evt.dataTransfer.getData('itemID')
-      const item = this.items.find((item) => item.id == itemID)
-      item.list = list
-    },
-    onDragOver(evt) {
-      console.log(evt, 'DRAG OVER')
-    },
-    onDragEnter(evt) {
-      console.log(evt, 'DRAG ENTER')
-    },
-  },
-}
-</script>
-<style scoped lang="scss">
-.ghost {
-  background: rgb(160, 116, 116);
-}
-.drop-zone__wrapper {
-  height: 90vh;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-}
-.drop-zone {
-  min-height: 6rem;
-  height: fit-content;
-  border-radius: 5px;
-  margin: 0.2rem;
-  min-width: 17rem;
-  background-color: #eee;
-  margin-bottom: 10px;
-  padding: 10px;
-  overflow-y: scroll;
-  max-height: 87vh;
-  /* height: fit-content; */
-  &__title {
-    padding: 10px;
-    font-size: 15px;
-    font-weight: bold;
+
+const { columns, createColunm, fetchBoard, createTask } = useBoard()
+const deleteColumn = (id) => {
+  try {
+    deleteColumnById(id).then(() => {
+      fetchBoard()
+    })
+  } catch (error) {
+    console.error(error)
   }
 }
+const board = ref(null)
+const draggedColumnIndex = ref(null)
+const sortedColumns = computed(() => {
+  return [...columns?.value].sort((a, b) => a.sort - b.sort)
+})
 
-.drag-el {
-  border-radius: 5px;
-  background-color: #fff;
-  margin-bottom: 8px;
-  padding: 5px;
+onMounted(() => {
+  new Sortable(board.value, {
+    group: 'columns',
+    handle: '.column-header',
+    animation: 150,
+    touchStartThreshold: 0, // количество пикселей для начала перетаскивания
+    chosenClass: 'sortable-chosen', // Класс для выбранного элемента
+    dragClass: 'sortable-drag', // Класс для перетаскиваемого элемента
+    onEnd: (evt) => {
+      const movedColumn = columns.value.splice(evt.oldIndex, 1)[0]
+      columns.value.splice(evt.newIndex, 0, movedColumn)
+
+      // Пересчитываем поле sort для колонок после перемещения
+      columns.value.forEach((column, index) => {
+        column.sort = index + 1
+      })
+    },
+  })
+})
+
+const onColumnMouseDown = (event, index) => {
+  draggedColumnIndex.value = index
 }
-.ghost {
-  background: rgba(53, 14, 14, 0.274);
+
+const moveTask = (fromColumn, toColumn, fromIndex, toIndex, task) => {
+  if (fromColumn !== toColumn || fromIndex !== toIndex) {
+    // Перемещение задачи между колонками
+    columns.value[fromColumn].tasks.splice(fromIndex, 1) // Удаляем задачу из текущей колонки
+    columns.value[toColumn].tasks.splice(toIndex, 0, task) // Вставляем задачу в новую колонку
+
+    // Пересчитываем поле sort для задач в обеих колонках
+    columns.value[fromColumn].tasks.forEach((task, index) => {
+      task.sort = index + 1
+    })
+    columns.value[toColumn].tasks.forEach((task, index) => {
+      task.sort = index + 1
+    })
+
+    // Здесь можно вызвать метод для сохранения изменений на сервере
+    // saveTasksToServer(columns.value);
+  }
 }
-.rotated {
-  transform: rotate(45deg); /* Equal to rotateZ(45deg) */
-  background-color: pink;
-}
-</style>
+</script>
