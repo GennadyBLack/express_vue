@@ -5,7 +5,6 @@ const Board = db.board;
 exports.findAll = (req, res) => {
   Board.findAll()
     .then((boards) => {
-      // Send all boards to Client
       res.send(boards);
     })
     .catch((err) => {
@@ -52,4 +51,18 @@ exports.delete = (req, res) => {
     .catch((err) => {
       res.status(500).send("Error -> " + err);
     });
+};
+
+exports.test = async (req, res) => {
+  try {
+    const sqlQuery = db.sequelize.getQueryInterface();
+    await sqlQuery.addColumn("boards", "aaa", {
+      type: db.Sequelize.TEXT,
+      allowNull: true, // или false, в зависимости от ваших требований
+    });
+    res.status(200).send("Column has been added!");
+  } catch (error) {
+    console.error(error, "ERRRRROOR");
+    res.status(500).send("Error -> " + error);
+  }
 };

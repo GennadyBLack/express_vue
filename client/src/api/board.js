@@ -15,3 +15,7 @@ export const updateBoard = (id, data) => {
 export const getBoardById = (id, config) => {
   return api.get(`/boards/${id}`, config)
 }
+
+export const testBoard = (config) => {
+  return api.get(`/boardsus`, config)
+}

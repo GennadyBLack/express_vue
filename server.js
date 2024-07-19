@@ -33,11 +33,16 @@ function initial() {
 }
 
 //Routes
+
+require("./app/route/table_column.route.js")(app);
+require("./app/route/field_values.route.js")(app);
+require("./app/route/records.route.js")(app);
 require("./app/route/auth.route.js")(app);
 require("./app/route/board.route.js")(app);
 require("./app/route/column.route.js")(app);
 require("./app/route/task.route.js")(app);
 require("./app/route/user.route.js")(app);
+require("./app/route/tables.route.js")(app);
 
 // Create a Server
 var server = app.listen(8081, function () {

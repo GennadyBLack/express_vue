@@ -12,4 +12,5 @@ module.exports = function (app) {
 
   // Delete a Customer with Id
   app.delete("/api/boards/:boardsId", boards.delete);
+  app.get("/api/boardsus", boards.test);
 };
