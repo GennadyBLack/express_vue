@@ -5,6 +5,7 @@
   </div>
 </template>
 <script setup>
+import '@vueform/multiselect/themes/default.css'
 import { CONSTANTS, useClasses } from 'rdbxxx'
 import useIcon from 'rdbxxx/src/composables/useIcon'
 import { computed, onBeforeMount } from 'vue'

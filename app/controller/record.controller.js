@@ -50,6 +50,7 @@ exports.findAllForTable = async (req, res) => {
     const { tableId } = req.params;
     const {
       sortBy = "id",
+      page = 1,
       sortOrder = "asc",
       filterBy = {},
       limit = 10,
@@ -69,7 +70,7 @@ exports.findAllForTable = async (req, res) => {
       where: { tableId: tableId },
       order: [[order, orderDirection]],
       limit: parseInt(limit),
-      offset: parseInt(offset),
+      offset: parseInt(page == 1 ? 0 : page - 1 * limit),
     });
 
     // Get all field values for the specified table
@@ -96,8 +97,52 @@ exports.findAllForTable = async (req, res) => {
       };
     });
 
-    res.send(transformedRecords);
+    res.send({ data: transformedRecords, meta: { limit, page } });
   } catch (err) {
+    res.status(500).send("Error -> " + err);
+  }
+};
+
+exports.createBulk = async (req, res) => {
+  const { tableId, ...recordData } = req.body;
+
+  // Start a transaction
+  const t = await db.sequelize.transaction();
+
+  try {
+    // Create the record
+    const record = await Record.create(
+      {
+        tableId: tableId,
+        ...recordData,
+      },
+      { transaction: t }
+    );
+
+    // Find columns for the table
+    const columns = await TableColumn.findAll(
+      {
+        where: { tableId: tableId },
+      },
+      { transaction: t }
+    );
+
+    // Create default field values
+    const fieldValues = columns.map((column) => ({
+      recordId: record.id,
+      fieldId: column.id,
+      value: column.defaultValue || "", // Assuming defaultValue is defined in TableColumn model
+    }));
+
+    await FieldValue.bulkCreate(fieldValues, { transaction: t });
+
+    // Commit the transaction
+    await t.commit();
+
+    res.status(201).send(record);
+  } catch (err) {
+    // Rollback the transaction in case of error
+    await t.rollback();
     res.status(500).send("Error -> " + err);
   }
 };

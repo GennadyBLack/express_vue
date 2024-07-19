@@ -9,5 +9,6 @@ const table = {
   getAll: async (config) => api.get(`/tables`, config),
   get: async (id, config) => api.get(`/tables/${id}`, config),
   getRecords: async (id, config) => api.get(`/tables/${id}/records`, config),
+  createData: async (id, data) => api.post(`/tables/${id}`, data),
 }
 export default table

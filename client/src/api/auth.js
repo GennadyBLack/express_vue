@@ -12,6 +12,16 @@ export const me = (config = {}) => {
   console.log(config, 'config')
   return api.post('/auth/me', {}, config)
 }
-// export const deleteTaskById = (id) =>{
-//     return api.delete('/task',{id})
-// }
+
+const auth = {
+  login: async (data) => {
+    return await api.post('/auth/login', data, data)
+  },
+  register: async (data) => {
+    return await api.post('/auth/register', data, data)
+  },
+  me: async (config = {}) => {
+    return await api.post('/auth/me', {}, config)
+  },
+}
+export default auth

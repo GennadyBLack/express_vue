@@ -8,5 +8,7 @@ const field_values = {
   update: async (id, data) => api.patch(`/field_values/${id}`, data),
   getAll: async (config) => api.get(`/field_values`, config),
   get: async (id, config) => api.get(`/field_values/${id}`, config),
+  createBulk: async (data) => api.post(`/field_values/bulk`, data),
+  updateBulk: async (data) => api.post(`/field_values/bulk`, data),
 }
 export default field_values

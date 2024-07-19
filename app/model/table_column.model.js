@@ -20,6 +20,11 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       allowNull: true,
     },
+    defaultValue: {
+      // Default value for the field
+      type: Sequelize.STRING,
+      defaultValue: "",
+    },
     createdAt: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW,

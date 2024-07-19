@@ -19,3 +19,20 @@ export const updateTask = (id, data) => {
 export const getTaskById = (id) => {
   return api.get(`task/${id}`)
 }
+
+const task = {
+  delete: async (id) => {
+    return await api.delete('/task', { id })
+  },
+  create: async (id, data) => {
+    return await api.post(`/columns/${id}/task`, data)
+  },
+  update: async (id, data) => {
+    return await api.patch('/task/' + id, { data })
+  },
+  getTaskById: async (id) => {
+    return await api.get(`task/${id}`)
+  },
+}
+
+export default task

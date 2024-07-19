@@ -12,16 +12,41 @@ import Board from '../views/board/Board'
 import BoardsList from '../views/board/BoardsList'
 import BoardEdit from '../views/board/BoardEdit'
 import createBoardForm from '../components/board/createBoardForm'
-import Home from '../views/Home.vue'
+import Desctop from '../views/desctop/index.vue'
+import Edit from '../views/desctop/Edit.vue'
+import Create from '../views/desctop/Create.vue'
+import TableCurrent from '../views/desctop/TableCurrent.vue'
 
 const routes = [
   {
-    path: '/home',
-    name: 'home',
-    component: Home,
+    path: '/desctop',
+    name: 'desctop',
+    component: Desctop,
     meta: { layout: 'DefaultLayout', requiresAuth: false },
     props: true,
   },
+  {
+    path: '/desctop/edit/:id',
+    name: 'desctop-edit',
+    component: Edit,
+    props: true,
+    meta: { layout: 'DefaultLayout', requiresAuth: true },
+  },
+  {
+    path: '/desctop/add',
+    name: 'desctop-create',
+    component: Create,
+    props: true,
+    meta: { layout: 'DefaultLayout', requiresAuth: true },
+  },
+  {
+    path: '/desctop/:id',
+    name: 'desctop-details',
+    component: TableCurrent,
+    props: true,
+    meta: { layout: 'DefaultLayout', requiresAuth: true },
+  },
+
   {
     path: '/',
     name: 'tasks',
